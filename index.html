@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LobbeLuck - Your Ultimate Wager Destination</title>
+    <title>LobbeLuck</title>
     <meta name="description" content="Experience exclusive wager races and premium rewards on Rainbet with code TIMCODE. Join the LobbeLuck community!">
     <meta property="og:image" content="https://placehold.co/1200x630/0A111E/63B3ED?text=LobbeLuck+Wager+Races">
     <link rel="icon" type="image/png" href="https://placehold.co/32x32/0A111E/63B3ED?text=LL">
@@ -226,6 +226,10 @@
         /* --- Rainbet Card Section Styling --- */
         .card-container {
             padding: 5rem 2rem; /* More vertical padding for separation */
+            display: flex; /* Use flexbox to center the card */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically (if height allows) */
+            width: 100%; /* Ensure it takes full width to center its child */
         }
 
         .card-link .card-content {
@@ -542,8 +546,9 @@
         }
 
         /* Rainbet assets (background placeholders) */
+        /* Removed opacity to effectively hide them if they contain text */
         #leftsvg, #rightsvg {
-            opacity: 0.03; /* Extremely subtle */
+            display: none; /* Hide the background images completely */
         }
 
         /* --- Keyframe Animations (General) --- */
@@ -694,7 +699,6 @@
             }
             .controls { padding: 6px 12px; border-top-left-radius: 12px; border-top-right-radius: 12px; }
             .drag-handle { font-size: 1em; }
-            .close-btn { font-size: 1.6em; }
             iframe { height: calc(100% - 40px); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
         }
     </style>
@@ -707,8 +711,8 @@
         <div class="right-glow"></div>
     </div>
 
-    <img src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" alt="Rainbet Left" id="leftsvg" class="absolute left-0 top-0 h-full opacity-3 z-[-10]">
-    <img src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" alt="Rainbet Right" id="rightsvg" class="absolute right-0 top-0 h-full opacity-3 z-[-10]">
+    <img src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" alt="Rainbet Left" id="leftsvg" class="absolute left-0 top-0 h-full opacity-3 z-[-10]" style="display: none;">
+    <img src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" alt="Rainbet Right" id="rightsvg" class="absolute right-0 top-0 h-full opacity-3 z-[-10]" style="display: none;">
 
     <div class="coin-container">
         <img src="https://placehold.co/200x200/F6E05E/0A111E?text=COIN" alt="Floating Coin" class="coin-left">
