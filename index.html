@@ -701,7 +701,81 @@
             .drag-handle { font-size: 1em; }
             iframe { height: calc(100% - 40px); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
         }
-    </style>
+    
+/* --- Extra Responsive Tweaks for Mobile Experience (Enhanced) --- */
+@media (max-width: 480px) {
+    header {
+        flex-direction: column;
+        padding: 1rem;
+        text-align: center;
+    }
+
+    .logo-title {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logo-title .title {
+        font-size: 1.5rem !important;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 1rem;
+    }
+
+    nav a {
+        font-size: 0.9rem !important;
+    }
+
+    .hero-title,
+    .leaderboard-hero-title {
+        font-size: 2rem !important;
+        text-align: center;
+    }
+
+    .hero-subtitle,
+    .leaderboard-hero-subtitle {
+        font-size: 1rem !important;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    .card-link .card-content,
+    #appContent {
+        padding: 1rem !important;
+        margin: 1rem !important;
+    }
+
+    .signup-button {
+        width: 90%;
+        font-size: 1rem !important;
+        padding: 1rem !important;
+    }
+
+    .toggle-images .game-image {
+        width: 100% !important;
+        height: auto !important;
+    }
+
+    .toggle-images .label {
+        font-size: 1rem !important;
+    }
+
+    #leaderboard-rows .row.list {
+        flex-direction: column;
+        align-items: flex-start !important;
+    }
+
+    #leaderboard-rows .row.list > div {
+        width: 100% !important;
+        text-align: left !important;
+    }
+}
+
+</style>
 </head>
 <body class="antialiased">
     <canvas id="particleCanvas"></canvas>
