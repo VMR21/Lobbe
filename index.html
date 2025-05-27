@@ -1,483 +1,1056 @@
-
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <title>LobbeLuck</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Exclusive wager races on Rainbet for code TIMCODE!">
-    <meta property="og:image"
-        content="https://i.ibb.co/xqB27wFH/image.png">
-    <link rel="icon" type="image/jpg" href="https://files.kick.com/images/user/62062988/profile_image/conversion/2773ec20-0c2b-4798-a3b5-004838354539-fullsize.webp">
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
-    <link rel="stylesheet" type="text/css" href="/css/lb.css">
-    <link rel="stylesheet" type="text/css" href="/css/vendor.css">
-    <link rel="stylesheet" type="text/css" href="/css/cards.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="/css/toast.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LobbeLuck - Your Ultimate Wager Destination</title>
+    <meta name="description" content="Experience exclusive wager races and premium rewards on Rainbet with code TIMCODE. Join the LobbeLuck community!">
+    <meta property="og:image" content="https://placehold.co/1200x630/0A111E/63B3ED?text=LobbeLuck+Wager+Races">
+    <link rel="icon" type="image/png" href="https://placehold.co/32x32/0A111E/63B3ED?text=LL">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
+        /* --- Global Styles & Font Imports --- */
+        /* Inter for clean, readable body text */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        /* Orbitron for futuristic, bold headings and titles */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            /* Deep, sophisticated radial gradient for the background */
+            background: radial-gradient(circle at top left, #0A111E 0%, #010408 100%);
+            color: #E2E8F0; /* Light gray text for excellent contrast */
+            min-height: 100vh; /* Ensures the body covers the full viewport height */
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden; /* Prevents horizontal scrolling issues */
+            position: relative; /* Essential for positioning background elements */
+            scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+        }
+
+        /* --- Global Glow Effects (for consistency and impact) --- */
+        .glow-text-blue {
+            text-shadow: 0 0 15px rgba(99, 179, 237, 0.8), 0 0 30px rgba(99, 179, 237, 0.6);
+        }
+        .glow-text-gold {
+            text-shadow: 0 0 12px rgba(246, 224, 94, 0.8), 0 0 25px rgba(246, 224, 94, 0.6);
+        }
+        .glow-box-blue {
+            box-shadow: 0 0 100px rgba(39, 117, 202, 0.9);
+        }
+        .glow-box-gold {
+            box-shadow: 0 0 80px rgba(246, 224, 94, 0.8);
+        }
+
+        /* --- Header Section Styling --- */
+        header {
+            background-color: #121721; /* Very dark, almost black header background */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6); /* Stronger, more defined shadow */
+            position: sticky; /* Makes the header stay at the top when scrolling */
+            top: 0;
+            z-index: 1000; /* Ensures header is always on top */
+            border-bottom: 4px solid #2775ca; /* Prominent blue accent line */
+            backdrop-filter: blur(8px); /* Enhanced subtle blur effect */
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .logo-title .logo {
+            width: 60px; /* Larger, more impactful logo */
+            height: 60px;
+            border-radius: 50%; /* Perfect circle */
+            box-shadow: 0 0 25px rgba(39, 117, 202, 1); /* Intense, vibrant blue glow */
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother hover animation */
+        }
+        .logo-title .logo:hover {
+            transform: scale(1.15) rotate(5deg); /* More dynamic hover effect */
+        }
+
+        .logo-title .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3em; /* Larger, more commanding title */
+            color: #63B3ED; /* Vibrant blue for the title */
+            text-shadow: 0 0 20px rgba(99, 179, 237, 1); /* Stronger, more focused glow */
+            letter-spacing: 2px; /* Increased letter spacing for emphasis */
+            font-weight: 900; /* Extra bold */
+        }
+
+        /* --- Navigation Links & Dropdown Styling --- */
+        nav a {
+            position: relative;
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            font-weight: 600;
+            padding: 1rem 0; /* Generous vertical padding for better click/tap area */
+            font-size: 1.2em; /* Slightly larger nav links for readability */
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 5px; /* Thicker, more substantial underline */
+            bottom: -12px; /* Positioned further below the text */
+            left: 0;
+            background-color: #63B3ED; /* Matching blue accent */
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother, more elegant animation */
+            border-radius: 3px; /* Slightly rounded ends for the underline */
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            transform: translateY(-4px); /* More noticeable lift on hover */
+            color: #90CDF4; /* Lighter blue on hover */
+        }
+
+        /* Dropdown specific styles */
+        .dropdown-menu {
+            display: none; /* Hidden by default */
+            position: absolute;
+            background-color: #1A202C; /* Darker background for dropdown */
+            min-width: 200px; /* Wider dropdown for better content display */
+            box-shadow: 0px 12px 30px 0px rgba(0,0,0,0.7); /* Deeper, more pronounced shadow */
+            z-index: 1001; /* Above other content */
+            border-radius: 1rem; /* More rounded corners */
+            top: calc(100% + 20px); /* Positioned further below the "Socials" link */
+            left: 50%;
+            transform: translateX(-50%); /* Centered horizontally under the link */
+            padding: 1rem 0;
+            border: 3px solid #2775ca; /* More prominent blue border */
+            opacity: 0; /* Start invisible for animation */
+            transform-origin: top center; /* Animation origin from the top center */
+            animation: fadeInScale 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards; /* Smooth fade-in and scale animation */
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translateX(-50%) scaleY(0.6); } /* Start smaller and invisible */
+            to { opacity: 1; transform: translateX(-50%) scaleY(1); } /* End full size and visible */
+        }
+
+        .dropdown-menu a {
+            color: #CBD5E0; /* Lighter text for dropdown items */
+            padding: 16px 25px; /* Generous padding for each item */
+            text-decoration: none;
+            display: flex; /* Use flex for icon and text alignment */
+            align-items: center;
+            text-align: left;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            font-weight: 500; /* Medium font weight for readability */
+            font-size: 1.1em; /* Slightly larger font for dropdown items */
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #2D3748; /* Darker blue background on hover */
+            color: #63B3ED; /* Vibrant blue text on hover */
+            transform: translateX(8px); /* More pronounced slide effect on hover */
+        }
+        .dropdown-menu a .fab {
+            font-size: 1.3em; /* Larger icons within the dropdown */
+            margin-right: 12px; /* More space between icon and text */
+        }
+        .dropdown-menu a::after {
+            display: none; /* Hide the underline for dropdown items */
+        }
+
+        /* --- Hero Section Styling --- */
+        .hero-title {
+            animation: fadeInDown 1.5s ease-out forwards; /* Slower, more dramatic animation */
+            color: #63B3ED;
+            text-shadow: 0 0 40px rgba(99, 179, 237, 1), 0 0 80px rgba(99, 179, 237, 0.8); /* More intense, layered glow */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 6em; /* Significantly larger hero title */
+            letter-spacing: 4px; /* Increased letter spacing for impact */
+            line-height: 1; /* Tighter line height for large text */
+        }
+
+        .hero-subtitle {
+            animation: fadeInUp 1.5s ease-out forwards;
+            animation-delay: 0.5s; /* Longer delay for sequential animation */
+            opacity: 0;
+            font-size: 1.8em; /* Larger, more inviting subtitle */
+            color: #CBD5E0;
+            max-width: 900px; /* Wider subtitle for better flow */
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* --- Leaderboard Section Styling --- */
+        .leaderboard-section .title {
+            font-family: 'Orbitron', sans-serif;
+            color: #F6E05E;
+            text-shadow: 0 0 18px rgba(246, 224, 94, 0.9), 0 0 35px rgba(246, 224, 94, 0.7); /* Stronger, more vibrant gold glow */
+            font-size: 4.5em; /* Larger leaderboard title */
+            letter-spacing: 2px; /* Increased letter spacing */
+            font-weight: 900;
+        }
+
+        .toggle-images .image-wrapper {
+            position: relative;
+            display: inline-block;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+        }
+
+        .toggle-images .image-wrapper:hover {
+            transform: scale(1.06); /* More noticeable enlarge */
+            box-shadow: 0 0 50px rgba(39, 117, 202, 1.2); /* Even more intense blue glow on hover */
+        }
+
+        .toggle-images .game-image {
+            border-radius: 1.25rem; /* More rounded corners */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6); /* Deeper, more impactful shadow */
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .toggle-images .label {
+            background-color: rgba(39, 117, 202, 0.98); /* Almost fully opaque blue */
+            padding: 12px 30px; /* More generous padding */
+            border-radius: 9999px; /* Perfect pill shape */
+            font-weight: 800; /* Extra bold */
+            color: white;
+            box-shadow: 0 0 35px rgba(39, 117, 202, 1); /* Stronger, more defined glow for label */
+            font-size: 1.8em; /* Larger label text */
+            backdrop-filter: blur(4px); /* Slightly stronger blur */
+            -webkit-backdrop-filter: blur(4px);
+            border: 2px solid rgba(255, 255, 255, 0.2); /* Subtle white border */
+        }
+
+        /* --- Rainbet Card Section Styling --- */
+        .card-container {
+            padding: 5rem 2rem; /* More vertical padding for separation */
+        }
+
+        .card-link .card-content {
+            background: linear-gradient(145deg, #1A202C 0%, #0F172A 100%); /* Darker blue gradient for card */
+            border-radius: 2rem; /* Significantly more rounded corners */
+            padding: 3.5rem; /* Generous padding inside the card */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7); /* Much deeper, more dramatic shadow */
+            transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border: 4px solid #2775ca; /* More prominent, glowing blue border */
+            max-width: 550px; /* Wider card for better content display */
+        }
+
+        .card-link .card-content:hover {
+            transform: translateY(-25px) scale(1.05); /* More pronounced lift and scale */
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8), 0 0 70px rgba(39, 117, 202, 1.2); /* Even deeper shadow and intense glow */
+        }
+
+        .card-link img {
+            width: 180px; /* Significantly larger image */
+            height: auto;
+            margin-bottom: 3rem; /* More space below the image */
+            border-radius: 1.25rem; /* More rounded image corners */
+            box-shadow: 0 0 35px rgba(246, 224, 94, 0.9); /* Stronger, more vibrant gold glow for Rainbet logo */
+        }
+
+        .code-container {
+            background-color: #0F172A; /* Even darker background for code section */
+            padding: 1.5rem 3rem; /* Generous padding */
+            border-radius: 1.5rem; /* More rounded */
+            margin-bottom: 3rem; /* More space below */
+            box-shadow: inset 0 5px 10px rgba(0, 0, 0, 0.6); /* Deeper inner shadow */
+            border: 3px solid #2775ca; /* More prominent border */
+        }
+
+        .code-container svg {
+            color: #63B3ED;
+            font-size: 2.5rem; /* Larger arrows */
+            margin: 0 1.25rem; /* More space around arrows */
+        }
+
+        .code-container p {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem; /* Larger code text */
+            color: #F6E05E;
+            font-weight: 900; /* Extra bold */
+            text-shadow: 0 0 12px rgba(246, 224, 94, 1); /* Intense gold glow */
+        }
+
+        .description {
+            font-size: 1.3em; /* Larger description text */
+            margin-bottom: 1.5rem; /* More space below each description */
+            color: #CBD5E0;
+            line-height: 1.5;
+        }
+
+        .description svg {
+            color: #38A169; /* Richer green checkmark */
+            margin-right: 1.25rem;
+            font-size: 1.8rem; /* Larger checkmark */
+        }
+
+        .signup-button {
+            background: linear-gradient(135deg, #F6E05E, #D69E2E); /* Gold gradient */
+            color: #0F172A; /* Dark text on gold */
+            font-weight: 900; /* Max boldness */
+            padding: 1.5rem 3.5rem; /* Generous padding */
+            border-radius: 9999px; /* Perfect pill shape */
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+            transition: all 0.7s cubic-bezier(0.25, 0.8, 0.25, 1); /* Slower, more impactful transition */
+            margin-top: 3rem; /* More space above the button */
+            font-size: 1.4em; /* Larger button text */
+            letter-spacing: 0.5px;
+        }
+
+        .signup-button:hover {
+            transform: translateY(-12px) scale(1.1); /* More pronounced lift and scale */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7), 0 0 60px rgba(246, 224, 94, 1.2); /* Intense glow */
+            background: linear-gradient(135deg, #D69E2E, #F6E05E); /* Reverse gradient on hover */
+        }
+
+        /* --- Social Media Cards Section Styling --- */
+        .social-media-cards {
+            gap: 50px; /* More space between cards */
+            margin-top: 60px;
+            margin-bottom: 100px;
+        }
+
+        .social-media-cards .card {
+            background: linear-gradient(145deg, #1A202C, #0F172A);
+            padding: 25px 40px; /* Generous padding */
+            border-radius: 1.75rem; /* Significantly more rounded */
+            font-weight: 700;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+            border: 3px solid #2775ca;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            color: #E2E8F0; /* Ensure text color is consistent */
+        }
+
+        .social-media-cards .card:hover {
+            transform: translateY(-12px) scale(1.05); /* More pronounced lift and scale */
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.7), 0 0 55px rgba(39, 117, 202, 1); /* Intense blue glow */
+        }
+
+        .social-media-cards .icon {
+            width: 45px; /* Even larger icons */
+            height: 45px;
+        }
+
+        /* --- Footer Styling --- */
+        .inner-footer {
+            background-color: #121721; /* Match header background */
+            padding: 6rem 3rem; /* Generous padding */
+            border-top: 4px solid #2775ca;
+            box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.6);
+        }
+
+        .inner-footer .title {
+            font-family: 'Orbitron', sans-serif;
+            color: #63B3ED;
+            font-size: 1.5em; /* Larger footer titles */
+            margin-bottom: 1.8rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .inner-footer .subtitle {
+            color: #CBD5E0;
+            font-size: 1.05em; /* Slightly larger for readability */
+            line-height: 1.8;
+        }
+
+        .footer-socials a.social {
+            font-weight: 600;
+            font-size: 1.15em; /* Slightly larger social links */
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .footer-socials a.social:hover {
+            transform: translateX(8px); /* More pronounced slide */
+            color: #90CDF4;
+        }
+
+        .footer-socials .social-img {
+            width: 36px; /* Larger social icons in footer */
+            height: 36px;
+        }
+
+        /* --- Draggable Player Styling --- */
         .draggable {
             position: fixed;
-            bottom: 15px;
-            right: 15px;
-            width: 350px;
-            height: 250px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            bottom: 25px; /* More space from bottom */
+            right: 25px; /* More space from right */
+            width: 400px; /* Wider player */
+            height: 280px; /* Taller player */
+            border-radius: 25px; /* Significantly more rounded */
             overflow: hidden;
-            z-index: 1000;
-            background: white;
-            border: 2px solid #2775ca;
-            box-shadow: 0 0 100px rgba(39, 117, 202, 1);
+            z-index: 10000; /* Ensure it's on top of everything */
+            background: #0A111E; /* Match body background for seamless look */
+            border: 5px solid #2775ca; /* Thicker, more prominent border */
+            box-shadow: 0 0 180px rgba(39, 117, 202, 1.8), 0 0 30px rgba(0, 0, 0, 0.8); /* Super intense blue glow with a dark shadow */
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother transitions */
+            cursor: grab; /* Indicate draggable */
         }
 
         .controls {
             display: flex;
             align-items: center;
-            background-color: #333;
-            padding: 5px;
-            cursor: move;
+            justify-content: space-between;
+            background-color: #1A202C; /* Darker control bar */
+            padding: 15px 30px; /* More padding */
+            border-bottom: 2px solid #2775ca;
+            border-top-left-radius: 20px; /* Match player border-radius */
+            border-top-right-radius: 20px;
+            cursor: grab;
         }
 
         .drag-handle {
-            flex-grow: 1;
-            text-align: left;
-            color: #2775ca;
-            font-size: 20px;
+            color: #63B3ED;
+            font-size: 1.5em; /* Larger drag handle text */
             font-weight: 900;
-            box-shadow: 0 0 100px rgba(39, 117, 202, 1);
-            padding: 0 15px;
+            text-shadow: 0 0 20px rgba(39, 117, 202, 1);
+            flex-grow: 1; /* Allows handle to take available space */
+            text-align: left;
         }
 
         .close-btn {
             cursor: pointer;
             background: none;
             border: none;
-            color: #2775ca;
-            font-size: 20px;
-            font-weight: 900;
-            line-height: 30px;
-            box-shadow: 0 0 100px rgba(39, 117, 202, 1);
-            padding: 0 20px;
+            color: #EF4444; /* Red for clear close action */
+            font-size: 2.5em; /* Larger close button */
+            transition: transform 0.3s ease-in-out, color 0.3s ease;
+            line-height: 1; /* Ensure vertical alignment */
+        }
+        .close-btn:hover {
+            transform: rotate(180deg) scale(1.2); /* More dramatic close animation */
+            color: #DC2626; /* Darker red on hover */
         }
 
         iframe {
             width: 100%;
-            height: calc(100% - 40px);
+            height: calc(100% - 60px); /* Adjust height for control bar */
             border: none;
+            background-color: black; /* Ensure iframe background is dark */
+            border-bottom-left-radius: 20px; /* Match player border-radius */
+            border-bottom-right-radius: 20px;
         }
 
         .minimized-icon {
-            display: flex;
+            display: none; /* Hidden by default */
             align-items: center;
             justify-content: center;
             position: fixed;
-            bottom: 15px;
-            right: 15px;
-            width: 50px;
-            height: 50px;
-            border-radius: 25px;
-            /* Makes it round */
-            background-color: #333;
+            bottom: 25px;
+            right: 25px;
+            width: 90px; /* Significantly larger icon */
+            height: 90px;
+            border-radius: 50%; /* Perfect circle */
+            background-color: #2775ca; /* Vibrant blue background */
             color: white;
-            font-size: 30px;
-            z-index: 1001;
-            /* Should be above the draggable player */
+            font-size: 3em; /* Larger play icon */
+            z-index: 10001; /* Above draggable player */
             cursor: pointer;
-            box-shadow: 0 0 100px rgba(39, 117, 202, 1);
+            box-shadow: 0 0 250px rgba(39, 117, 202, 2.5), 0 0 40px rgba(0, 0, 0, 0.8); /* Ultra intense blue glow with dark shadow */
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        .open-btn {
-            background: none;
-            border: none;
-            color: #2775ca;
-            font-size: 20px;
-            font-weight: 900;
-            cursor: pointer;
+        .minimized-icon:hover {
+            transform: scale(1.2); /* More pronounced scale */
+            box-shadow: 0 0 300px rgba(39, 117, 202, 3), 0 0 50px rgba(0, 0, 0, 1); /* Even more intense glow */
         }
 
-        @media (max-width: 570px) {
-
-            /* center the player on mobile */
-            .draggable {
-                left: 50%;
-                transform: translateX(-50%);
-            }
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .code-description-container {
-                flex-direction: column;
-            }
-
-            .code-description-card,
-            .code-image {
-                min-width: 100%;
-            }
-
-            .code-image {
-                order: -1;
-                margin-bottom: 20px;
-            }
-        }
-
-        .code-description-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(39, 117, 202, 0.5);
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(0px) scaleX(1) rotate(20deg);
-            }
-
-            50% {
-                transform: translateY(-10px) scaleX(1) rotate(20deg);
-            }
-
-            100% {
-                transform: translateY(0px) scaleX(1) rotate(20deg);
-            }
-        }
-
-        @keyframes floatLeft {
-            0% {
-                transform: translateY(0px) scaleX(-1) rotate(20deg);
-            }
-
-            50% {
-                transform: translateY(-10px) scaleX(-1) rotate(20deg);
-            }
-
-            100% {
-                transform: translateY(0px) scaleX(-1) rotate(20deg);
-            }
-        }
-
+        /* --- Floating Coin Animations (Enhanced) --- */
         .coin-container {
-            position: relative;
-            height: 0;
-            margin: 0;
+            position: absolute; /* Changed from relative to absolute for better positioning control */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Allows clicks to pass through */
+            z-index: -1; /* Behind main content */
         }
-
-        .coin-left,
-        .coin-right {
+        .coin-left, .coin-right {
+            height: 200px; /* Significantly larger coins */
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1.2)); /* More intense gold glow */
             position: absolute;
-            height: 100px;
-            width: auto;
-            opacity: 0.7;
-            top: -50px;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
         }
-
         .coin-left {
-            left: 22%;
-            animation: floatLeft 3s ease-in-out infinite;
+            top: 20%; /* Adjust vertical position */
+            left: 5%; /* Closer to the edge */
+            animation: floatLeft 5s infinite alternate; /* Slower, smoother animation */
         }
-
         .coin-right {
-            right: 25%;
-            animation: float 3s ease-in-out infinite;
+            top: 60%; /* Adjust vertical position */
+            right: 5%; /* Closer to the edge */
+            animation: float 5s infinite alternate; /* Slower, smoother animation */
+        }
+        @keyframes float {
+            0% { transform: translateY(0px) scaleX(1) rotate(25deg); opacity: 0.9; }
+            50% { transform: translateY(-30px) scaleX(1) rotate(25deg); opacity: 1; }
+            100% { transform: translateY(0px) scaleX(1) rotate(25deg); opacity: 0.9; }
+        }
+        @keyframes floatLeft {
+            0% { transform: translateY(0px) scaleX(-1) rotate(25deg); opacity: 0.9; }
+            50% { transform: translateY(-30px) scaleX(-1) rotate(25deg); opacity: 1; }
+            100% { transform: translateY(0px) scaleX(-1) rotate(25deg); opacity: 0.9; }
         }
 
-        @media screen and (max-width: 768px) {
-            .coin-container {
-                display: none;
+        /* --- Particle Canvas and Background Glows --- */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10; /* Furthest back */
+            pointer-events: none;
+            opacity: 0.9; /* More visible particles */
+        }
+        .glow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -11; /* Even further back */
+        }
+        .left-glow, .right-glow {
+            position: absolute;
+            width: 60vw; /* Larger glow areas */
+            height: 60vw;
+            border-radius: 50%;
+            filter: blur(250px); /* More intense blur */
+            opacity: 0.5; /* More visible */
+            animation: pulseGlow 7s infinite alternate; /* Slower, more subtle pulse */
+        }
+        .left-glow {
+            top: 0%; /* Closer to top */
+            left: -20%; /* Further out */
+            background-color: rgba(39, 117, 202, 0.9); /* Stronger blue glow */
+        }
+        .right-glow {
+            bottom: 0%; /* Closer to bottom */
+            right: -20%; /* Further out */
+            background-color: rgba(246, 224, 94, 0.9); /* Stronger gold glow */
+            animation-delay: 3s; /* Longer delay */
+        }
+        @keyframes pulseGlow {
+            from { transform: scale(0.8); opacity: 0.5; }
+            to { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        /* Rainbet assets (background placeholders) */
+        #leftsvg, #rightsvg {
+            opacity: 0.03; /* Extremely subtle */
+        }
+
+        /* --- Keyframe Animations (General) --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-80px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(80px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Toast Message Box Styling --- */
+        #toast {
+            background-color: #28A745; /* Standard green */
+            padding: 20px 40px; /* Generous padding */
+            border-radius: 15px; /* More rounded */
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+            font-weight: 700;
+            font-size: 1.2em;
+            text-align: center;
+            color: white;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            z-index: 100000; /* Ensure it's on top */
+        }
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-20px); /* More noticeable lift on show */
+        }
+
+        /* --- Responsive Adjustments (Crucial for mobile experience) --- */
+        @media (max-width: 1280px) { /* Adjust for larger tablets/small laptops */
+            .hero-title { font-size: 5em; }
+            .hero-subtitle { font-size: 1.5em; }
+            .leaderboard-section .title { font-size: 3.5em; }
+            .card-link .card-content { max-width: 450px; padding: 3rem; }
+            .card-link img { width: 140px; }
+            .code-container p { font-size: 2rem; }
+            .signup-button { padding: 1.2rem 3rem; font-size: 1.2em; }
+            .social-media-cards { gap: 40px; }
+            .social-media-cards .card { padding: 20px 30px; }
+            .social-media-cards .icon { width: 38px; height: 38px; }
+            .coin-left, .coin-right { height: 150px; }
+            .draggable { width: 350px; height: 250px; }
+            .minimized-icon { width: 80px; height: 80px; }
+        }
+
+        @media (max-width: 1024px) { /* Adjust for tablets */
+            .logo-title .title { font-size: 2.2em; }
+            nav a { font-size: 1.1em; padding: 0.6rem 0; }
+            nav a::after { bottom: -8px; height: 3px; }
+            .dropdown-menu { min-width: 160px; top: calc(100% + 10px); }
+            .dropdown-menu a { padding: 12px 18px; font-size: 1em; }
+            .dropdown-menu a .fab { font-size: 1.1em; }
+
+            .hero-title { font-size: 4em; letter-spacing: 2px; }
+            .hero-subtitle { font-size: 1.3em; }
+            .leaderboard-section .title { font-size: 3em; letter-spacing: 1.5px; }
+            .toggle-images .label { font-size: 1.4em; padding: 8px 20px; }
+
+            .card-link .card-content { padding: 2.5rem; border-radius: 1.5rem; }
+            .card-link img { width: 120px; margin-bottom: 2rem; }
+            .code-container { padding: 1rem 2rem; margin-bottom: 2rem; border-radius: 1rem; }
+            .code-container svg { font-size: 1.8rem; margin: 0 0.8rem; }
+            .code-container p { font-size: 1.8rem; }
+            .description { font-size: 1.1em; margin-bottom: 1rem; }
+            .description svg { font-size: 1.4rem; margin-right: 0.8rem; }
+            .signup-button { padding: 1rem 2.5rem; font-size: 1.1em; margin-top: 2rem; }
+
+            .social-media-cards { gap: 30px; margin-top: 40px; margin-bottom: 70px; }
+            .social-media-cards .card { padding: 18px 28px; border-radius: 1.5rem; }
+            .social-media-cards .icon { width: 32px; height: 32px; }
+
+            .inner-footer { padding: 4rem 2rem; }
+            .inner-footer .title { font-size: 1.3em; margin-bottom: 1.2rem; }
+            .inner-footer .subtitle { font-size: 0.95em; }
+            .footer-socials a.social { font-size: 1.05em; }
+            .footer-socials .social-img { width: 28px; height: 28px; }
+
+            .coin-left, .coin-right { height: 120px; }
+            .draggable { width: 320px; height: 220px; bottom: 20px; right: 20px; }
+            .minimized-icon { width: 70px; height: 70px; font-size: 2.8em; bottom: 20px; right: 20px; }
+        }
+
+        @media (max-width: 768px) { /* Adjust for mobile devices */
+            header { flex-direction: column; align-items: center; padding: 1rem; }
+            .logo-title { margin-bottom: 1rem; }
+            .logo-title .title { font-size: 1.8em; }
+            .nav-links { flex-wrap: wrap; justify-content: center; width: 100%; margin-top: 0.5rem; space-x: 0; }
+            .nav-links li { margin: 0 10px; }
+            nav a { font-size: 0.95em; padding: 0.3rem 0; }
+            nav a::after { bottom: -4px; height: 2px; }
+            .dropdown-menu { top: calc(100% + 5px); min-width: 140px; }
+            .dropdown-menu a { padding: 10px 15px; font-size: 0.9em; }
+            .dropdown-menu a .fab { font-size: 1em; margin-right: 8px; }
+
+            .hero-title { font-size: 2.5em; letter-spacing: 1px; }
+            .hero-subtitle { font-size: 1em; }
+            .leaderboard-section .title { font-size: 2em; letter-spacing: 0.5px; }
+            .toggle-images .game-image { width: 250px; }
+            .toggle-images .label { font-size: 1.1em; padding: 6px 18px; }
+
+            .card-container { padding: 1.5rem 0.5rem; }
+            .card-link .card-content { padding: 1.8rem; border-radius: 1rem; }
+            .card-link img { width: 90px; margin-bottom: 1rem; }
+            .code-container { padding: 0.7rem 1.2rem; margin-bottom: 1rem; border-radius: 0.6rem; }
+            .code-container svg { font-size: 1.1rem; margin: 0 0.4rem; }
+            .code-container p { font-size: 1.1rem; }
+            .description { font-size: 0.9em; margin-bottom: 0.6rem; }
+            .description svg { font-size: 1.1rem; margin-right: 0.4rem; }
+            .signup-button { padding: 0.7rem 1.8rem; font-size: 0.95em; margin-top: 1.2rem; }
+
+            .social-media-cards { gap: 15px; margin-top: 25px; margin-bottom: 40px; }
+            .social-media-cards .card { padding: 10px 18px; border-radius: 0.8rem; }
+            .social-media-cards .icon { width: 24px; height: 24px; }
+
+            .inner-footer { padding: 2.5rem 1rem; flex-direction: column; text-align: center; }
+            .inner-footer .col { margin-bottom: 1.5rem; }
+            .inner-footer .title { font-size: 1.1em; margin-bottom: 0.8rem; }
+            .inner-footer .subtitle { font-size: 0.8em; }
+            .footer-socials { justify-content: center; }
+            .footer-socials .social-img { width: 20px; height: 20px; }
+
+            .coin-container { display: none; } /* Hide coins on smaller screens for performance/layout */
+            .draggable {
+                width: 90vw;
+                height: 160px;
+                bottom: 10px;
+                right: 5vw;
+                left: 5vw;
+                transform: none; /* Remove translateX */
+                border-radius: 15px;
+                border: 3px solid #2775ca;
+                box-shadow: 0 0 100px rgba(39, 117, 202, 1.5);
             }
+            .minimized-icon {
+                width: 55px;
+                height: 55px;
+                font-size: 2.2em;
+                bottom: 10px;
+                right: 10px;
+                box-shadow: 0 0 150px rgba(39, 117, 202, 2);
+            }
+            .controls { padding: 6px 12px; border-top-left-radius: 12px; border-top-right-radius: 12px; }
+            .drag-handle { font-size: 1em; }
+            .close-btn { font-size: 1.6em; }
+            iframe { height: calc(100% - 40px); border-bottom-left-radius: 12px; border-bottom-right-radius: 12px; }
         }
     </style>
 </head>
-
-<body>
-    <div id="toast">
-        <span id="message"></span>
-    </div>
-    <div id="draggable-player" class="draggable">
-        <div id="controls" class="controls">
-            <div id="drag-handle" class="drag-handle">&#x2630;</div>
-            <button id="close-btn" class="close-btn">&times;</button>
-        </div>
-        <iframe src="https://player.kick.com/LobbeLuck" frameborder="0" allow="autoplay; fullscreen" allowfullscreen>
-        </iframe>
-    </div>
+<body class="antialiased">
     <canvas id="particleCanvas"></canvas>
+
     <div class="glow-container">
         <div class="left-glow"></div>
         <div class="right-glow"></div>
     </div>
-    <object type="image/png" data="/assets/left-rainbet.png" id="leftsvg" height="100%">
-    </object>
-    <object type="image/png" data="/assets/right-rainbet.png" id="rightsvg" height="100%">
-    </object>
-    <header>
+
+    <img src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" alt="Rainbet Left" id="leftsvg" class="absolute left-0 top-0 h-full opacity-3 z-[-10]">
+    <img src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" alt="Rainbet Right" id="rightsvg" class="absolute right-0 top-0 h-full opacity-3 z-[-10]">
+
+    <div class="coin-container">
+        <img src="https://placehold.co/200x200/F6E05E/0A111E?text=COIN" alt="Floating Coin" class="coin-left">
+        <img src="https://placehold.co/200x200/F6E05E/0A111E?text=COIN" alt="Floating Coin" class="coin-right">
+    </div>
+
+    <div id="draggable-player" class="draggable">
+        <div id="controls" class="controls">
+            <div id="drag-handle" class="drag-handle">&#x2630; LobbeLuck Stream</div>
+            <button id="close-btn" class="close-btn" aria-label="Close Stream">&times;</button>
+        </div>
+        <iframe src="https://player.kick.com/LobbeLuck" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    </div>
+    <div id="minimized-icon" class="minimized-icon">
+        <button id="open-btn" class="open-btn" aria-label="Open Stream Player"><i class="fas fa-play"></i></button>
+    </div>
+
+    <header class="flex flex-col md:flex-row justify-between items-center p-6 rounded-b-lg">
+        <div class="logo-title flex items-center mb-6 md:mb-0">
+            <img src="https://placehold.co/60x60/1A202C/63B3ED?text=LL" alt="LobbeLuck Logo" class="logo mr-5">
+            <h1 class="title text-3xl font-extrabold leading-tight">LobbeLuck</h1>
+        </div>
         <nav>
-            <div class="logo-title">
-                <img src="/assets/logo.png" alt="Site logo" class="logo">
-                <h1 class="title">LobbeLuck</h1>
-            </div>
-            <ul class="nav-links">
-                
-                <li><a href="/leaderboard/rainbet">LEADERBOARDS</a></li>
+            <ul class="nav-links flex space-x-12 relative">
+                <li><a href="#hero-section" class="text-xl hover:text-blue-400 transition-colors duration-300">Home</a></li>
+                <li><a href="#leaderboards-section" class="text-xl hover:text-blue-400 transition-colors duration-300">LEADERBOARDS</a></li>
+                <li class="relative">
+                    <a href="#socials-section" id="socials-dropdown-toggle" class="text-xl hover:text-blue-400 transition-colors duration-300">Socials <i class="fas fa-caret-down ml-2 text-base"></i></a>
+                    <div id="socials-dropdown-menu" class="dropdown-menu">
+                        <a href="https://www.instagram.com/lobbeluck" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://kick.com/LobbeLuck" target="_blank" rel="noopener noreferrer"><i class="fab fa-kickstarter-k"></i> Kick</a>
+                        <a href="https://discord.gg/nHgRKs3d" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
-    <br>
-    <br>
-    <div data-v-1d580398="" data-v-e4097664="" id="appContent">
-        <div data-v-1d580398="" class="row text" style="margin-top: 50px;">
-            <span data-v-1d580398="" class="title">COMPETE ON OUR LEADERBOARDs!</span>
-            <div class="toggle-images" style="margin-top: 20px;">
-                <div class="image-wrapper">
-                    <img class="game-image clash-image" id="clashImage2" src="/assets/rainbet.png"
-                        style="cursor: pointer;opacity: 1;" onclick="window.location.href='/leaderboard/rainbet'">
-                    <div class="label">
-                        <div data-v-1d580398="" class="price-wrapper glow" style="font-size: 26px;">
-                            $ 500
-                        </div>
-                    </div>
+
+    <section id="hero-section" class="hero py-40 text-center px-4 flex-grow flex flex-col justify-center items-center">
+        <h1 class="hero-title font-extrabold mb-8 animate-fadeInDown">Your Winning Streak Starts Here!</h1>
+        <p class="hero-subtitle mb-16 animate-fadeInUp">Welcome to the official hub for LobbeLuck - exclusive wager races, vibrant community, and top-tier rewards. Join the elite!</p>
+    </section>
+
+    <div id="leaderboards-section" class="flex flex-col items-center py-24 px-4 bg-gradient-to-br from-gray-900 to-blue-950 rounded-xl mx-auto my-16 max-w-6xl w-full shadow-2xl border-2 border-blue-700">
+        <span class="leaderboard-section title font-bold mb-16 glow-text-gold">COMPETE ON OUR LEADERBOARDs!</span>
+        <div class="toggle-images flex justify-center items-center mt-10">
+            <div class="image-wrapper">
+                <img class="game-image w-96 h-auto rounded-3xl shadow-xl border-4 border-blue-500" src="https://placehold.co/384x216/2775ca/ffffff?text=Rainbet+Leaderboard+Image" alt="Rainbet Leaderboard Image">
+                <div class="label absolute bottom-6 left-1/2 -translate-x-1/2">
+                    <div class="price-wrapper text-4xl font-bold glow">$ 500</div>
                 </div>
             </div>
         </div>
-        <div data-v-1d580398="" class="row text" style="margin-top: 80px;">
-            <!-- <span data-v-1d580398="" class="title">SUPPORT ME!</span> -->
-        </div>
-        <div class="card-container">
-            <a href="https://rainbet.com/?r=timcode" class="card-link" target="_blank">
-                <div class="MuiBox-root css-1o7r9kk">
-                    <div class="MuiBox-root css-1t0wa4v"><img src="/assets/rainbet.png" alt=""></div>
-                    <div class="code-container MuiBox-root css-0"><svg
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1rmbjih" focusable="false"
-                            aria-hidden="true" viewBox="0 0 24 24" data-testid="KeyboardDoubleArrowRightIcon">
-                            <path d="M6.41 6 5 7.41 9.58 12 5 16.59 6.41 18l6-6z"></path>
-                            <path d="m13 6-1.41 1.41L16.17 12l-4.58 4.59L13 18l6-6z"></path>
-                        </svg>
-                        <p class="MuiTypography-root MuiTypography-body1 css-8a8e2m-MuiTypography-root"
-                            style="font-size: 24px;">Code</p>
-                        <p class="MuiTypography-root MuiTypography-body1 code css-rmwyl-MuiTypography-root">
-                            TIMCODE
-                        </p>
-                        <svg class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1m8kjhh" focusable="false"
-                            aria-hidden="true" viewBox="0 0 24 24" data-testid="KeyboardDoubleArrowLeftIcon">
-                            <path d="M17.59 18 19 16.59 14.42 12 19 7.41 17.59 6l-6 6z"></path>
-                            <path d="m11 18 1.41-1.41L7.83 12l4.58-4.59L11 6l-6 6z"></path>
-                        </svg>
-                    </div>
-                    <div class="MuiBox-root css-18dqm7l">
-                        <div class="description MuiBox-root css-0"><svg
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ywrbwt" focusable="false"
-                                aria-hidden="true" viewBox="0 0 24 24" data-testid="CheckCircleOutlineIcon">
-                                <path
-                                    d="M16.59 7.58 10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z">
-                                </path>
-                            </svg>
-                            <p class="MuiTypography-root MuiTypography-body1 css-8a8e2m-MuiTypography-root">
-                                EXCLUSIVE REWARDS
-                            </p>
-                        </div>
-                        <div class="description MuiBox-root css-0"><svg
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ywrbwt" focusable="false"
-                                aria-hidden="true" viewBox="0 0 24 24" data-testid="CheckCircleOutlineIcon">
-                                <path
-                                    d="M16.59 7.58 10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z">
-                                </path>
-                            </svg>
-                            <p class="MuiTypography-root MuiTypography-body1 css-8a8e2m-MuiTypography-root">
-                                LEADERBOARD
-                            </p>
-                        </div>
-                    </div><a
-                        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root signup-button css-sbgg6k-MuiButtonBase-root-MuiButton-root"
-                        tabindex="0" href="https://rainbet.com/?r=timcode" target="_blank">Sign up<span
-                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"></span></a>
+    </div>
+
+    <div class="card-container py-24 px-4">
+        <a href="https://rainbet.com/?r=timcode" class="card-link block mx-auto" target="_blank" rel="noopener noreferrer">
+            <div class="card-content flex flex-col items-center">
+                <div class="mb-12">
+                    <img src="https://placehold.co/180x180/F6E05E/0A111E?text=Rainbet+Logo" alt="Rainbet Logo" class="rounded-2xl shadow-lg border-4 border-yellow-400">
                 </div>
+                <div class="code-container flex items-center justify-center mb-12">
+                    <i class="fas fa-angle-double-right text-blue-400"></i>
+                    <p class="font-orbitron text-5xl text-yellow-300 font-bold glow-text-gold mx-6">Code</p>
+                    <p class="font-orbitron text-5xl text-yellow-300 font-bold glow-text-gold">TIMCODE</p>
+                    <i class="fas fa-angle-double-left text-blue-400"></i>
+                </div>
+                <div class="space-y-8 text-center">
+                    <div class="description flex items-center justify-center">
+                        <i class="far fa-check-circle mr-5 text-green-500 text-3xl"></i>
+                        <p class="text-2xl">EXCLUSIVE REWARDS</p>
+                    </div>
+                    <div class="description flex items-center justify-center">
+                        <i class="far fa-check-circle mr-5 text-green-500 text-3xl"></i>
+                        <p class="text-2xl">LEADERBOARD ACCESS</p>
+                    </div>
+                </div>
+                <button class="signup-button" tabindex="0">Sign up Now</button>
+            </div>
+        </a>
+    </div>
+
+    <div id="socials-section" class="flex flex-col items-center py-24 px-4 bg-gradient-to-tl from-gray-900 to-blue-950 rounded-xl mx-auto my-16 max-w-6xl w-full shadow-2xl border-2 border-blue-700">
+        <span class="title font-orbitron text-4xl font-bold mb-16 glow-text-gold">Connect With Us!</span>
+        <div class="social-media-cards flex flex-wrap justify-center">
+            <a href="https://kick.com/LobbeLuck" target="_blank" rel="noopener noreferrer" class="card kick">
+                <img src="https://placehold.co/45x45/50C878/ffffff?text=K" alt="Kick Logo" class="icon" />
+                <span>@Lobbeluck</span>
+            </a>
+            <a href="https://www.instagram.com/lobbeluck" target="_blank" rel="noopener noreferrer" class="card instagram">
+                <img src="https://placehold.co/45x45/E1306C/ffffff?text=I" alt="Instagram Logo" class="icon" />
+                <span>@Lobbeluck</span>
+            </a>
+            <a href="https://discord.gg/nHgRKs3d" target="_blank" rel="noopener noreferrer" class="card discord">
+                <img src="https://placehold.co/45x45/7289DA/ffffff?text=D" alt="Discord Logo" class="icon" />
+                <span>@Lobbeluck</span>
             </a>
         </div>
-        <div data-v-1d580398="" class="row text" style="margin-top: 50px;">
-            <span data-v-1d580398="" class="title">Our Socials!</span>
+    </div>
+
+    <div class="inner-footer flex flex-col md:flex-row justify-around items-start py-20 px-6 mt-auto">
+        <div class="col-5 mb-12 md:mb-0 text-center md:text-left">
+            <div class="company"></div><br>
+            <span class="copyright text-base text-gray-400">LobbeLuck &copy; All Rights Reserved 2025.</span>
         </div>
-<style>
-  .social-media-cards {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    margin-top: 30px;
-  }
-
-  .social-media-cards .card {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    padding: 10px 15px;
-    border-radius: 8px;
-    text-decoration: none;
-    color: white;
-    font-weight: 500;
-    transition: transform 0.2s;
-  }
-
-  .social-media-cards .card:hover {
-    transform: translateY(-3px);
-  }
-
-  .social-media-cards .icon {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-  }
-</style>
-
-<div class="social-media-cards">
-    <a href="https://kick.com/Lobbeluck" target="_blank" class="card kick">
-        <img src="/assets/kick.png" alt="Kick Logo" class="icon" />
-        <span>@Lobbeluck</span>
-    </a>
-    <a href="https://www.instagram.com/lobbeluck" target="_blank" class="card x">
-        <img src="/assets/instagram.png" alt="Instagram Logo" class="icon" />
-        <span>@Lobbeluck</span>
-    </a>
-    <a href="https://discord.gg/nHgRKs3d" target="_blank" class="card discord">
-        <img src="/assets/discord.png" alt="Discord Logo" class="icon" />
-        <span>@Lobbeluck</span>
-    </a>
-</div>
-
-
-
-    <!-- <div data-v-1d580398="" class="row text" style="margin-top: 50px;">
-        <span data-v-1d580398="" class="title">My Last Uploads!</span>
-        <div class="cards-container-videos">
-            
+        <div class="col mb-12 md:mb-0 text-center md:text-left">
+            <span class="title">Info</span>
+            <a href="#" class="block mt-5"><span class="subtitle hover:text-blue-300 transition-colors">Terms of Service</span></a>
+            <a href="#" class="block mt-3"><span class="subtitle hover:text-blue-300 transition-colors">Privacy Policy</span></a>
         </div>
-    </div> -->
-
-    <div data-v-5867ad71="" class="row inner-footer">
-        <div data-v-5867ad71="" class="col-5">
-            <div data-v-5867ad71="" class="content">
-                <div data-v-5867ad71="" class="company"></div><br data-v-5867ad71=""><span data-v-5867ad71=""
-                    class="copyright">Lobbeluck<br data-v-5867ad71=""> All Right Reserved 2025.</span>
+        <div class="col mb-12 md:mb-0 text-center md:text-left">
+            <span class="title">Socials</span>
+            <div class="footer-socials space-y-4 mt-5">
+                <a href="https://kick.com/lobbeluck" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
+                    <img src="https://placehold.co/36x36/50C878/ffffff?text=K" alt="Kick Logo" class="social-img mr-4">
+                    <span>Kick</span>
+                </a>
+                <a href="https://www.instagram.com/lobbeluck" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
+                    <img src="https://placehold.co/36x36/E1306C/ffffff?text=I" alt="Instagram Logo" class="social-img mr-4">
+                    <span>Instagram</span>
+                </a>
+                <a href="https://discord.gg/nHgRKs3d" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
+                    <img src="https://placehold.co/36x36/7289DA/ffffff?text=D" alt="Discord Logo" class="social-img mr-4">
+                    <span>Discord</span>
+                </a>
             </div>
         </div>
-
-        <div data-v-5867ad71="" class="col">
-            <span data-v-5867ad71="" class="title">Info</span>
-
-            <a data-v-5867ad71="" href="/" class=""><span data-v-5867ad71="" class="subtitle">Terms of
-                    Service</span></a>
-            <a data-v-5867ad71="" href="/" class=""><span data-v-5867ad71="" class="subtitle">Privacy
-                    Policy</span></a>
-        </div>
-<style>
-  .footer-socials {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 10px;
-  }
-
-  .footer-socials a.social {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    transition: transform 0.2s;
-  }
-
-  .footer-socials a.social:hover {
-    transform: translateX(4px);
-  }
-
-  .footer-socials .social-img {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-  }
-</style>
-
-<div class="col">
-    <span class="title">Socials</span>
-    <div class="footer-socials">
-        <a href="https://kick.com/lobbeluck" target="_blank" class="social">
-            <img src="/assets/kick.png" alt="Kick Logo" class="social-img">
-            <span>Kick</span>
-        </a>
-        <a href="https://www.instagram.com/lobbeluck" target="_blank" class="social">
-            <img src="/assets/instagram.png" alt="X Logo" class="social-img">
-            <span>Instagram</span>
-        </a>
-        <a href="https://discord.gg/nHgRKs3d" target="_blank" class="social">
-            <img src="/assets/discord.png" alt="Discord Logo" class="social-img">
-            <span>Discord</span>
-        </a>
-    </div>
-</div>
-
-
-
-        <div data-v-5867ad71="" class="col">
-            <span data-v-5867ad71="" class="title">BeGambleAware.com</span>
-            <span data-v-5867ad71="" class="subtitle" style="font-size: 9px;">Responsible Gambling Advisory: While
-                gambling can be entertaining,
-                it's crucial to be aware of the associated risks. Exercise self-control,
-                set limits, and seek support if needed. Enjoy the excitement responsibly
-                and prioritize your well-being. We are not responsible for any losses or damages caused by gambling.
-            </span>
+        <div class="col text-center md:text-left max-w-sm">
+            <span class="title">BeGambleAware.com</span>
+            <span class="subtitle text-xs text-gray-500 mt-5 block">Responsible Gambling Advisory: While gambling can be entertaining, it's crucial to be aware of the associated risks. Exercise self-control, set limits, and seek support if needed. Enjoy the excitement responsibly and prioritize your well-being. We are not responsible for any losses or damages caused by gambling.</span>
         </div>
     </div>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"93f5c327eff14c77","version":"2025.4.0-1-g37f21b1","r":1,"token":"6a289e34095c4e319f5a765107c772ad","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
-</body>
-<script src="/js/app.js"></script>
-<script src="/js/particles.js"></script>
-<script src="/js/toast.js"></script>
 
-<script>
-    window.onload = function () {
-        var player = document.getElementById('draggable-player');
-        var dragHandle = document.getElementById('drag-handle');
-        var closeBtn = document.getElementById('close-btn');
+    <div id="toast">
+        <span id="message"></span>
+    </div>
 
-        dragHandle.onmousedown = function (event) {
-            event.preventDefault();
-            var startX = event.clientX - player.offsetLeft;
-            var startY = event.clientY - player.offsetTop;
+    <script>
+        // --- Particle Background Animation (Canvas) ---
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const numParticles = 150; // Increased number of particles for a denser effect
+        const particleColor = 'rgba(99, 179, 237, 0.6)'; // Slightly more visible blue particles
+        const lineColor = 'rgba(99, 179, 237, 0.15)'; // Slightly more visible lines
 
-            function onMouseMove(event) {
-                player.style.left = event.clientX - startX + 'px';
-                player.style.top = event.clientY - startY + 'px';
+        // Particle class definition - MOVED TO TOP FOR PROPER INITIALIZATION
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 2.5 + 0.8; // Varied particle sizes
+                this.speedX = Math.random() * 1.5 - 0.75; // Speed range from -0.75 to 0.75
+                this.speedY = Math.random() * 1.5 - 0.75;
             }
 
-            document.addEventListener('mousemove', onMouseMove);
+            // Update particle position and handle boundary wrapping
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
 
-            document.onmouseup = function () {
-                document.removeEventListener('mousemove', onMouseMove);
-            };
-        };
+                // Wrap particles around the screen edges for continuous flow
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+
+            // Draw the particle on the canvas
+            draw() {
+                ctx.fillStyle = particleColor;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        // Function to resize canvas to fill the entire window
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles(); // Re-initialize particles on resize to fit new dimensions
+        }
+        // Event listener for window resize, debounced for performance
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resizeCanvas, 250); // Debounce to prevent excessive calls
+        });
+        resizeCanvas(); // Initial call to set canvas size
+
+        // Function to initialize particles array
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                particles.push(new Particle(x, y));
+            }
+        }
+
+        // Function to draw lines connecting nearby particles
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    const distance = Math.sqrt(
+                        (particles[a].x - particles[b].x) ** 2 +
+                        (particles[a].y - particles[b].y) ** 2
+                    );
+                    // Connect particles if they are within a certain distance
+                    if (distance < 150) { // Increased connection distance
+                        const opacityValue = 1 - (distance / 150); // Opacity fades with distance
+                        ctx.strokeStyle = lineColor.replace('0.15', opacityValue.toFixed(2)); // Use toFixed for smooth transition
+                        ctx.lineWidth = 1.2; // Slightly thicker lines
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        // Main animation loop for particles
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the entire canvas
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            connectParticles(); // Draw connections after all particles are updated
+            requestAnimationFrame(animateParticles); // Request next frame
+        }
+
+        // Start particle animation when the window has fully loaded
+        window.addEventListener('load', () => {
+            initParticles();
+            animateParticles();
+        });
 
 
-        var minimizedIcon = document.getElementById('minimized-icon');
-        var openBtn = document.getElementById('open-btn');
+        // --- Draggable Player Logic ---
+        const player = document.getElementById('draggable-player');
+        const dragHandle = document.getElementById('drag-handle');
+        const closeBtn = document.getElementById('close-btn');
+        const minimizedIcon = document.getElementById('minimized-icon');
+        const openBtn = document.getElementById('open-btn');
 
-        // Hide the player and show the minimized icon when close button is clicked
-        closeBtn.onclick = function () {
-            player.style.display = 'none';
+        let isDragging = false;
+        let offsetX, offsetY;
+
+        // Function to start dragging
+        dragHandle.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            // Calculate offset from mouse to player's top-left corner
+            offsetX = e.clientX - player.getBoundingClientRect().left;
+            offsetY = e.clientY - player.getBoundingClientRect().top;
+            dragHandle.style.cursor = 'grabbing'; // Change cursor to indicate dragging
+            player.style.transition = 'none'; // Disable CSS transitions during drag for smooth movement
+        });
+
+        // Function to handle dragging movement
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return; // Only move if dragging is active
+
+            let newX = e.clientX - offsetX;
+            let newY = e.clientY - offsetY;
+
+            // Constrain player within viewport bounds
+            newX = Math.max(0, Math.min(newX, window.innerWidth - player.offsetWidth));
+            newY = Math.max(0, Math.min(newY, window.innerHeight - player.offsetHeight));
+
+            player.style.left = `${newX}px`;
+            player.style.top = `${newY}px`;
+        });
+
+        // Function to stop dragging
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            dragHandle.style.cursor = 'grab'; // Reset cursor
+            player.style.transition = 'all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)'; // Re-enable transitions
+        });
+
+        // Close (minimize) player
+        closeBtn.addEventListener('click', () => {
+            player.style.display = 'none'; // Hide the main player
             minimizedIcon.style.display = 'flex'; // Show the minimized icon
-        };
+        });
 
-        // Add click event to the minimized icon to show the player again
-        openBtn.onclick = function () {
-            player.style.display = 'block';
+        // Open (maximize) player
+        openBtn.addEventListener('click', () => {
+            player.style.display = 'block'; // Show the main player
             minimizedIcon.style.display = 'none'; // Hide the minimized icon
-        };
-    };
-</script>
+        });
+
+        // --- Socials Dropdown Logic ---
+        const socialsToggle = document.getElementById('socials-dropdown-toggle');
+        const socialsMenu = document.getElementById('socials-dropdown-menu');
+
+        // Toggle dropdown visibility on click
+        socialsToggle.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent default link behavior (e.g., navigating to #)
+            socialsMenu.classList.toggle('show'); // Add/remove 'show' class to control visibility
+        });
+
+        // Close dropdown if a click occurs outside of it
+        document.addEventListener('click', (e) => {
+            // Check if the click target is NOT the toggle button AND NOT inside the dropdown menu
+            if (!socialsToggle.contains(e.target) && !socialsMenu.contains(e.target)) {
+                socialsMenu.classList.remove('show'); // Hide the dropdown
+            }
+        });
+
+        // --- Copy Promo Code Functionality ---
+        function copyPromoCode() {
+            const promoCode = 'TIMCODE'; // The actual promo code to be copied
+            const textarea = document.createElement('textarea'); // Create a temporary textarea element
+            textarea.value = promoCode; // Set its value to the promo code
+            document.body.appendChild(textarea); // Append it to the document body
+            textarea.select(); // Select the text within the textarea
+
+            try {
+                document.execCommand('copy'); // Execute the copy command
+                showToast('Promo code copied: ' + promoCode); // Show success toast
+            } catch (err) {
+                console.error('Failed to copy promo code:', err);
+                showToast('Failed to copy promo code. Please copy manually.'); // Show error toast
+            } finally {
+                document.body.removeChild(textarea); // Always remove the temporary textarea
+            }
+        }
+
+        // --- Toast Notification Function ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const messageSpan = document.getElementById('message');
+            messageSpan.textContent = message; // Set the message text
+            toast.classList.add('show'); // Add 'show' class to make it visible and animate
+            setTimeout(() => {
+                toast.classList.remove('show'); // Remove 'show' class after 3 seconds to hide it
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
