@@ -1,54 +1,505 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <title>Lobbeluck | Rainbet Leaderboard</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Exclusive wager races on Rainbet for code Lobbeluck!">
-    <meta property="og:image"
-        content="https://i.ibb.co/xqB27wFH/image.png">
-    <link rel="icon" type="image/jpg" href="/assets/logo.png">
-    <link rel="stylesheet" type="text/css" href="/css/app.css">
-    <link rel="stylesheet" type="text/css" href="/css/lb.css">
-    <link rel="stylesheet" type="text/css" href="/css/vendor.css">
-    <script src="/js/countdown-roobet.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/toast.css">
+    <meta property="og:image" content="https://i.ibb.co/xqB27wFH/image.png">
+    <link rel="icon" type="image/png" href="https://files.kick.com/images/user/62062988/profile_image/conversion/2773ec20-0c2b-4798-a3b5-004838354539-fullsize.webp">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <style>
+        /* --- Global Styles & Font Imports (Copied from Main Site) --- */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap');
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            background: radial-gradient(circle at top left, #0A111E 0%, #010408 100%);
+            color: #E2E8F0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            position: relative;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Global Glow Effects (Copied from Main Site) --- */
+        .glow-text-blue {
+            text-shadow: 0 0 15px rgba(99, 179, 237, 0.8), 0 0 30px rgba(99, 179, 237, 0.6);
+        }
+        .glow-text-gold {
+            text-shadow: 0 0 12px rgba(246, 224, 94, 0.8), 0 0 25px rgba(246, 224, 94, 0.6);
+        }
+        .glow-box-blue {
+            box-shadow: 0 0 100px rgba(39, 117, 202, 0.9);
+        }
+        .glow-box-gold {
+            box-shadow: 0 0 80px rgba(246, 224, 94, 0.8);
+        }
+
+        /* --- Header Section Styling (Copied from Main Site) --- */
+        header {
+            background-color: #121721;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 4px solid #2775ca;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .logo-title .logo {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(39, 117, 202, 1);
+            transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .logo-title .logo:hover {
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        .logo-title .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3em;
+            color: #63B3ED;
+            text-shadow: 0 0 20px rgba(99, 179, 237, 1);
+            letter-spacing: 2px;
+            font-weight: 900;
+        }
+
+        /* --- Navigation Links & Dropdown Styling (Copied from Main Site) --- */
+        nav a {
+            position: relative;
+            transition: color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            font-weight: 600;
+            padding: 1rem 0;
+            font-size: 1.2em;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 5px;
+            bottom: -12px;
+            left: 0;
+            background-color: #63B3ED;
+            transition: width 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 3px;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            transform: translateY(-4px);
+            color: #90CDF4;
+        }
+
+        /* Dropdown specific styles */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #1A202C;
+            min-width: 200px;
+            box-shadow: 0px 12px 30px 0px rgba(0,0,0,0.7);
+            z-index: 1001;
+            border-radius: 1rem;
+            top: calc(100% + 20px);
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 1rem 0;
+            border: 3px solid #2775ca;
+            opacity: 0;
+            transform-origin: top center;
+            animation: fadeInScale 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: translateX(-50%) scaleY(0.6); }
+            to { opacity: 1; transform: translateX(-50%) scaleY(1); }
+        }
+
+        .dropdown-menu a {
+            color: #CBD5E0;
+            padding: 16px 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            text-align: left;
+            transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+            font-weight: 500;
+            font-size: 1.1em;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #2D3748;
+            color: #63B3ED;
+            transform: translateX(8px);
+        }
+        .dropdown-menu a .fab {
+            font-size: 1.3em;
+            margin-right: 12px;
+        }
+        .dropdown-menu a::after {
+            display: none;
+        }
+
+        /* --- Hero Section Styling (Adapted for Leaderboard Intro) --- */
+        .leaderboard-hero-title {
+            animation: fadeInDown 1.5s ease-out forwards;
+            color: #63B3ED;
+            text-shadow: 0 0 40px rgba(99, 179, 237, 1), 0 0 80px rgba(99, 179, 237, 0.8);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 5em; /* Slightly smaller than main hero title */
+            letter-spacing: 3px;
+            line-height: 1;
+        }
+
+        .leaderboard-hero-subtitle {
+            animation: fadeInUp 1.5s ease-out forwards;
+            animation-delay: 0.5s;
+            opacity: 0;
+            font-size: 1.6em; /* Slightly smaller than main hero subtitle */
+            color: #CBD5E0;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.4;
+        }
+
+        /* --- Leaderboard Section Specific Styling --- */
+        .leaderboard-section-title {
+            font-family: 'Orbitron', sans-serif;
+            color: #F6E05E;
+            text-shadow: 0 0 18px rgba(246, 224, 94, 0.9), 0 0 35px rgba(246, 224, 94, 0.7);
+            font-size: 4em; /* Adjusted for leaderboard context */
+            letter-spacing: 2px;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .toggle-images .image-wrapper {
+            position: relative;
+            display: inline-block;
+            transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            cursor: pointer;
+        }
+
+        .toggle-images .image-wrapper:hover {
+            transform: scale(1.06);
+            box-shadow: 0 0 50px rgba(39, 117, 202, 1.2);
+        }
+
+        .toggle-images .game-image {
+            border-radius: 1.25rem;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+            transition: box-shadow 0.3s ease-in-out;
+            width: 384px; /* Fixed width as per main site's placeholder */
+            height: 216px; /* Fixed height as per main site's placeholder */
+            object-fit: cover; /* Ensures image covers the area */
+            border: 4px solid #2775ca; /* Added border for consistency */
+        }
+
+        .toggle-images .label {
+            background-color: rgba(39, 117, 202, 0.98);
+            padding: 12px 30px;
+            border-radius: 9999px;
+            font-weight: 800;
+            color: white;
+            box-shadow: 0 0 35px rgba(39, 117, 202, 1);
+            font-size: 1.8em;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            position: absolute; /* Needed for positioning */
+            bottom: 24px; /* Adjusted to match main site's label position */
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Leaderboard Table/List Styling */
+        #appContent {
+            background: linear-gradient(145deg, #1A202C 0%, #0F172A 100%);
+            border-radius: 2rem;
+            padding: 3.5rem;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.7);
+            border: 4px solid #2775ca;
+            max-width: 900px; /* Wider for leaderboard content */
+            margin: 4rem auto; /* Center the main content block */
+            width: 100%; /* Ensure it takes full width up to max-width */
+            box-sizing: border-box;
+        }
+
+        .css-esk2ah { /* Main leaderboard content wrapper */
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .css-2w2ovy { /* Container for top 3 and countdown */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .css-gqrafh { /* Top 3 Player Cards Container */
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Align cards at the bottom */
+            gap: 2rem;
+            width: 100%;
+            flex-wrap: wrap; /* Allow wrapping on smaller screens */
+        }
+
+        .css-jehefp { /* Individual Top 3 Player Card */
+            background: linear-gradient(135deg, #1f2937, #111827);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
+            min-width: 180px; /* Ensure cards have a minimum width */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .css-jehefp:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .css-jehefp img { /* Player avatar/logo in top 3 card */
+            border-radius: 0.75rem;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .css-hca0vm { /* Username container */
+            font-size: 1.2em;
+            color: #E2E8F0;
+            font-weight: bold;
+        }
+
+        .css-15a1lq3 { /* Username text */
+            font-family: 'Inter', sans-serif;
+        }
+
+        .css-7ahevu { /* Wagered container */
+            display: flex;
+            align-items: center;
+            font-size: 1em;
+            color: #CBD5E0;
+        }
+
+        .css-1vqddgv { /* "Wagered:" label */
+            font-weight: 500;
+        }
+
+        .css-18icuxn { /* Wagered amount container */
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            color: #F6E05E;
+            margin-left: 0.5rem;
+        }
+
+        .css-1y0ox2o { /* Inner wrapper for text, often for glow */
+            display: inline-block;
+        }
+
+        .css-114dvlx { /* Actual text with glow */
+            text-shadow: 0 0 5px rgba(246, 224, 94, 0.5);
+        }
+
+        .css-v4675v { /* Reward container */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #F6E05E;
+            text-shadow: 0 0 8px rgba(246, 224, 94, 0.7);
+        }
+
+        /* Countdown Timer */
+        .countdown {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 1.5rem 2rem;
+            background: rgba(18, 23, 33, 0.7); /* Darker, semi-transparent background */
+            border-radius: 1rem;
+            border: 2px solid #2775ca;
+            box-shadow: 0 0 20px rgba(39, 117, 202, 0.4);
+        }
+
+        .countdown .title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            color: #E2E8F0;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        #countdown {
+            font-size: 3.5rem; /* Larger countdown numbers */
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 0 15px #00eaff, 0 0 30px #00eaff, 0 0 60px #00eaff; /* More intense glow */
+            display: block; /* Ensure it takes its own line */
+            margin-top: 0.5rem;
+        }
+
+        /* Player Rows (4-10) */
+        #leaderboard-rows {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        #leaderboard-rows .row.list {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Distribute items with space between */
+            background: #1A202C; /* Darker background for rows */
+            padding: 1rem 1.5rem; /* Increased padding */
+            border-radius: 0.75rem;
+            border: 1px solid rgba(39, 117, 202, 0.3);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #leaderboard-rows .row.list:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Individual column styling within rows */
+        #leaderboard-rows .row.list .rank-col {
+            flex: none; /* Do not grow */
+            width: 12%; /* Adjusted width for rank */
+            text-align: left;
+        }
+        #leaderboard-rows .row.list .username-col {
+            flex-grow: 1; /* Take remaining space */
+            display: flex;
+            align-items: center;
+            text-align: left;
+            padding-left: 1rem; /* Add some padding to the left of the username */
+        }
+        #leaderboard-rows .row.list .reward-col {
+            flex: none; /* Do not grow */
+            width: 18%; /* Adjusted width for reward */
+            text-align: left; /* Keep left aligned as per image */
+        }
+        #leaderboard-rows .row.list .wagered-col {
+            flex: none; /* Do not grow */
+            width: 25%; /* Adjusted width for wagered */
+            text-align: right; /* Right align for numbers */
+        }
+
+
+        #leaderboard-rows .row.list .rank-col b { /* Rank number */
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.4em;
+            color: #63B3ED;
+            text-shadow: 0 0 8px rgba(99, 179, 237, 0.5);
+        }
+
+        #leaderboard-rows .row.list .username-col span { /* Username in rows */
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+        }
+
+        #leaderboard-rows .row.list .price-wrapper {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+        }
+
+        /* Warning Message Style (existing, but ensure visual harmony) */
         .warning-message {
             width: 90%;
             max-width: 500px;
-            margin: 10px auto;
-            background-color: rgba(255, 0, 0, 0.1);
+            margin: 20px auto; /* More margin */
+            background-color: rgba(255, 0, 0, 0.15); /* Slightly more opaque */
             border: 2px solid #ff4444;
-            border-radius: 4px;
+            border-radius: 8px; /* More rounded */
             padding: 15px;
             color: #ff4444;
             font-weight: bold;
             text-align: center;
             box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(255, 0, 0, 0.3); /* Added shadow */
         }
 
-        @media screen and (max-width: 768px) {
-            .warning-message {
-                width: 95%;
-                padding: 12px;
-                font-size: 14px;
-                margin: 10px auto;
-            }
+        /* Rules Button (prev-lb-btn) */
+        .prev-lb-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px; /* More space */
+            background: linear-gradient(135deg, #ff8e3c, #e07b2f); /* Orange gradient */
+            color: #0F172A; /* Dark text on orange */
+            padding: 14px 28px; /* More padding */
+            border-radius: 9999px; /* Pill shape */
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none; /* Removed border */
+            box-shadow: 0 8px 20px rgba(255, 142, 60, 0.4); /* Orange shadow */
+            position: relative;
+            overflow: hidden;
+            font-size: 1.1em;
+            margin-top: 1.5rem; /* Space below warning message */
+            cursor: pointer;
         }
 
-        /* Modal Styles */
+        .prev-lb-btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            background: linear-gradient(135deg, #e07b2f, #ff8e3c); /* Reverse gradient */
+            box-shadow: 0 12px 25px rgba(255, 142, 60, 0.6);
+            color: #0F172A;
+        }
+
+        .prev-lb-btn:hover svg {
+            transform: scale(1.1);
+            stroke: #0F172A; /* Dark stroke on hover */
+        }
+
+        .prev-lb-btn:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .prev-lb-btn svg {
+            width: 20px; /* Larger icon */
+            height: 20px;
+            transition: transform 0.2s ease;
+            stroke: #0F172A; /* Default dark stroke */
+        }
+
+        /* Modal Styles (Copied from Main Site) */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 10000; /* Higher z-index for modals */
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.8); /* Darker overlay */
             opacity: 0;
             transition: opacity 0.5s ease;
         }
@@ -58,15 +509,15 @@
         }
 
         .modal-content {
-            background: linear-gradient(135deg, #1f2937, #111827);
-            margin: 10% auto;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            width: 80%;
-            max-width: 600px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            transform: translateY(-20px);
+            background: linear-gradient(135deg, #1A202C, #0F172A); /* Darker gradient */
+            margin: 8% auto; /* Adjusted margin */
+            padding: 30px; /* More padding */
+            border: 2px solid rgba(39, 117, 202, 0.5); /* Blue border */
+            border-radius: 15px; /* More rounded */
+            width: 85%;
+            max-width: 650px; /* Slightly wider */
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6); /* Deeper shadow */
+            transform: translateY(-30px); /* More pronounced initial transform */
             transition: transform 0.5s ease;
             position: relative;
         }
@@ -79,165 +530,348 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.15); /* Slightly more visible border */
+            padding-bottom: 20px;
+            margin-bottom: 20px;
         }
 
         .modal-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 28px; /* Larger title */
+            font-weight: 800; /* Bolder */
+            color: #63B3ED; /* Blue title */
+            text-shadow: 0 0 10px rgba(99, 179, 237, 0.7);
             margin: 0;
         }
 
         .close {
-            color: #aaa;
-            font-size: 28px;
+            color: #E2E8F0; /* Lighter close button */
+            font-size: 32px; /* Larger close button */
             font-weight: bold;
             cursor: pointer;
-            transition: color 0.2s ease;
+            transition: color 0.2s ease, transform 0.2s ease;
         }
 
         .close:hover {
             color: #fff;
+            transform: rotate(90deg);
         }
 
         .modal-body {
             color: #d1d5db;
-            font-size: 16px;
-            line-height: 1.6;
+            font-size: 18px; /* Larger body text */
+            line-height: 1.8;
         }
 
         .modal-body li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             text-align: left;
         }
 
         .modal-body ul {
-            padding-left: 20px;
+            padding-left: 25px;
         }
 
-        .prev-lb-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            background: rgb(39, 117, 202);
-            color: #000;
-            padding: 12px 24px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 15px rgba(39, 117, 202, 0.2);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .prev-lb-btn:hover {
-            transform: translateY(-2px) scale(1.02);
-            background: rgb(39, 117, 202);
-            box-shadow: 0 6px 20px rgba(39, 117, 202, 0.4);
-            border-color: rgba(255, 255, 255, 0.4);
-            text-decoration: none;
-            color: black;
-        }
-
-        .prev-lb-btn:hover svg {
-            transform: scale(1.1);
-            stroke: black;
-        }
-
-        .prev-lb-btn:active {
-            transform: translateY(0) scale(0.98);
-        }
-
-        .prev-lb-btn svg {
-            width: 18px;
-            height: 18px;
-            transition: transform 0.2s ease;
-        }
-
+        /* Coin Animations (Copied from Main Site) */
         @keyframes float {
-            0% {
-                transform: translateY(0px) scaleX(1) rotate(20deg);
-            }
-
-            50% {
-                transform: translateY(-10px) scaleX(1) rotate(20deg);
-            }
-
-            100% {
-                transform: translateY(0px) scaleX(1) rotate(20deg);
-            }
+            0% { transform: translateY(0px) scaleX(1) rotate(25deg); opacity: 0.9; }
+            50% { transform: translateY(-30px) scaleX(1) rotate(25deg); opacity: 1; }
+            100% { transform: translateY(0px) scaleX(1) rotate(25deg); opacity: 0.9; }
         }
-
         @keyframes floatLeft {
-            0% {
-                transform: translateY(0px) scaleX(-1) rotate(20deg);
-            }
-
-            50% {
-                transform: translateY(-10px) scaleX(-1) rotate(20deg);
-            }
-
-            100% {
-                transform: translateY(0px) scaleX(-1) rotate(20deg);
-            }
+            0% { transform: translateY(0px) scaleX(-1) rotate(25deg); opacity: 0.9; }
+            50% { transform: translateY(-30px) scaleX(-1) rotate(25deg); opacity: 1; }
+            100% { transform: translateY(0px) scaleX(-1) rotate(25deg); opacity: 0.9; }
         }
 
         .coin-container {
-            position: relative;
-            height: 0;
-            margin: 0;
-        }
-
-        .coin-left,
-        .coin-right {
             position: absolute;
-            height: 100px;
-            width: auto;
-            opacity: 0.7;
-            top: -50px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
         }
-
+        .coin-left, .coin-right {
+            height: 200px;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 1.2));
+            position: absolute;
+            animation-iteration-count: infinite;
+            animation-timing-function: ease-in-out;
+        }
         .coin-left {
-            left: 22%;
-            animation: floatLeft 3s ease-in-out infinite;
+            top: 20%;
+            left: 5%;
+            animation: floatLeft 5s infinite alternate;
         }
-
         .coin-right {
-            right: 25%;
-            animation: float 3s ease-in-out infinite;
+            top: 60%;
+            right: 5%;
+            animation: float 5s infinite alternate;
         }
-
         @media screen and (max-width: 768px) {
             .coin-container {
                 display: none;
             }
         }
-    
+        
+        /* Countdown Timer Specific Style (Enhanced) */
         #countdown {
-            font-size: 3rem;
-            font-weight: 800;
+            font-family: 'Orbitron', sans-serif; /* Consistent font */
+            font-size: 4rem; /* Larger */
+            font-weight: 900;
             color: #ffffff;
-            text-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff, 0 0 40px #00eaff;
+            text-shadow: 0 0 15px #00eaff, 0 0 30px #00eaff, 0 0 60px #00eaff;
+            margin-top: 1rem; /* More space */
+            display: block;
         }
 
         @media (max-width: 768px) {
             #countdown {
-                font-size: 2rem;
+                font-size: 2.5rem;
             }
         }
 
-</style>
-</head>
+        /* --- Particle Canvas and Background Glows (Copied from Main Site) --- */
+        #particleCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -10;
+            pointer-events: none;
+            opacity: 0.9;
+        }
+        .glow-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -11;
+        }
+        .left-glow, .right-glow {
+            position: absolute;
+            width: 60vw;
+            height: 60vw;
+            border-radius: 50%;
+            filter: blur(250px);
+            opacity: 0.5;
+            animation: pulseGlow 7s infinite alternate;
+        }
+        .left-glow {
+            top: 0%;
+            left: -20%;
+            background-color: rgba(39, 117, 202, 0.9);
+        }
+        .right-glow {
+            bottom: 0%;
+            right: -20%;
+            background-color: rgba(246, 224, 94, 0.9);
+            animation-delay: 3s;
+        }
+        @keyframes pulseGlow {
+            from { transform: scale(0.8); opacity: 0.5; }
+            to { transform: scale(1.2); opacity: 0.7; }
+        }
 
+        /* Rainbet assets (background placeholders) - Styled as subtle background lines/patterns */
+        #leftsvg, #rightsvg {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: auto; /* Maintain aspect ratio */
+            opacity: 0.02; /* Even more subtle */
+            filter: blur(3px); /* More blur */
+            pointer-events: none; /* Ensure they don't interfere with clicks */
+            z-index: -5; /* Place them behind most content but above glow-container */
+            animation: fadeInOut 10s infinite alternate; /* Subtle long animation */
+        }
+        #leftsvg {
+            left: 0;
+        }
+        #rightsvg {
+            right: 0;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0.01; }
+            50% { opacity: 0.03; }
+            100% { opacity: 0.01; }
+        }
+
+        /* --- Keyframe Animations (General - Copied from Main Site) --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-80px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(80px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- Toast Message Box Styling (Copied from Main Site) --- */
+        #toast {
+            background-color: #28A745;
+            padding: 20px 40px;
+            border-radius: 15px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+            font-weight: 700;
+            font-size: 1.2em;
+            text-align: center;
+            color: white;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            z-index: 100000;
+        }
+        #toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(-20px);
+        }
+
+        /* --- Footer Styling (Copied from Main Site) --- */
+        .inner-footer {
+            background-color: #121721;
+            padding: 6rem 3rem;
+            border-top: 4px solid #2775ca;
+            box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.6);
+            margin-top: auto; /* Pushes footer to the bottom */
+        }
+
+        .inner-footer .title {
+            font-family: 'Orbitron', sans-serif;
+            color: #63B3ED;
+            font-size: 1.5em;
+            margin-bottom: 1.8rem;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+
+        .inner-footer .subtitle {
+            color: #CBD5E0;
+            font-size: 1.05em;
+            line-height: 1.8;
+        }
+
+        .footer-socials a.social {
+            font-weight: 600;
+            font-size: 1.15em;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .footer-socials a.social:hover {
+            transform: translateX(8px);
+            color: #90CDF4;
+        }
+
+        .footer-socials .social-img {
+            width: 36px;
+            height: 36px;
+        }
+
+        /* --- Responsive Adjustments (Copied and Adapted from Main Site) --- */
+        @media (max-width: 1280px) {
+            .leaderboard-hero-title { font-size: 4em; }
+            .leaderboard-hero-subtitle { font-size: 1.3em; }
+            .leaderboard-section-title { font-size: 3.5em; }
+            .toggle-images .game-image { width: 320px; height: 180px; }
+            .toggle-images .label { font-size: 1.4em; padding: 8px 20px; }
+            #countdown { font-size: 3rem; }
+            .css-jehefp { min-width: 160px; padding: 1rem; }
+            .css-jehefp img { width: 80px; }
+            .css-jehefp .css-v4675v { font-size: 1.2em; }
+            #leaderboard-rows .row.list { padding: 0.8rem 1.2rem; }
+            #leaderboard-rows .row.list .rank-col { width: 10%; }
+            #leaderboard-rows .row.list .reward-col { width: 20%; }
+            #leaderboard-rows .row.list .wagered-col { width: 28%; }
+            #leaderboard-rows .row.list .rank-col b { font-size: 1.2em; }
+            #leaderboard-rows .row.list .username-col span { font-size: 1em; }
+            #leaderboard-rows .row.list .price-wrapper { font-size: 0.9em; }
+        }
+
+        @media (max-width: 1024px) {
+            .logo-title .title { font-size: 2.2em; }
+            nav a { font-size: 1.1em; padding: 0.6rem 0; }
+            nav a::after { bottom: -8px; height: 3px; }
+            .dropdown-menu { min-width: 160px; top: calc(100% + 10px); }
+            .dropdown-menu a { padding: 12px 18px; font-size: 1em; }
+            .dropdown-menu a .fab { font-size: 1.1em; }
+
+            .leaderboard-hero-title { font-size: 3.5em; letter-spacing: 2px; }
+            .leaderboard-hero-subtitle { font-size: 1.1em; }
+            .leaderboard-section-title { font-size: 2.8em; letter-spacing: 1.5px; }
+            .toggle-images .game-image { width: 280px; height: 157.5px; }
+            .toggle-images .label { font-size: 1.2em; padding: 6px 16px; }
+            #countdown { font-size: 2.5rem; }
+            .css-jehefp { min-width: 140px; padding: 0.8rem; }
+            .css-jehefp img { width: 70px; }
+            .css-jehefp .css-v4675v { font-size: 1.1em; }
+            #leaderboard-rows .row.list { padding: 0.6rem 1rem; }
+            #leaderboard-rows .row.list .rank-col { width: 10%; }
+            #leaderboard-rows .row.list .reward-col { width: 20%; }
+            #leaderboard-rows .row.list .wagered-col { width: 28%; }
+            #leaderboard-rows .row.list .rank-col b { font-size: 1.1em; }
+            #leaderboard-rows .row.list .username-col span { font-size: 0.9em; }
+            #leaderboard-rows .row.list .price-wrapper { font-size: 0.8em; }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; align-items: center; padding: 1rem; }
+            .logo-title { margin-bottom: 1rem; }
+            .logo-title .title { font-size: 1.8em; }
+            nav .nav-links { flex-wrap: wrap; justify-content: center; width: 100%; margin-top: 0.5rem; space-x: 0; }
+            nav .nav-links li { margin: 0 10px; }
+            nav a { font-size: 0.95em; padding: 0.3rem 0; }
+            nav a::after { bottom: -4px; height: 2px; }
+            .dropdown-menu { top: calc(100% + 5px); min-width: 140px; }
+            .dropdown-menu a { padding: 10px 15px; font-size: 0.9em; }
+            .dropdown-menu a .fab { font-size: 1em; margin-right: 8px; }
+
+            .leaderboard-hero-title { font-size: 2.2em; letter-spacing: 1px; }
+            .leaderboard-hero-subtitle { font-size: 0.9em; }
+            .leaderboard-section-title { font-size: 1.8em; letter-spacing: 0.5px; }
+            .toggle-images .game-image { width: 250px; height: 140.625px; }
+            .toggle-images .label { font-size: 1em; padding: 5px 12px; bottom: 15px; }
+            #countdown { font-size: 2rem; }
+            .css-jehefp { min-width: 120px; padding: 0.6rem; }
+            .css-jehefp img { width: 60px; }
+            .css-jehefp .css-v4675v { font-size: 1em; }
+            #leaderboard-rows .row.list { padding: 0.5rem 0.8rem; }
+            .rank-col { width: 15%; } /* Adjusted for smaller screens */
+            .reward-col { width: 25%; } /* Adjusted for smaller screens */
+            .wagered-col { width: 35%; } /* Adjusted for smaller screens */
+            #leaderboard-rows .row.list .rank-col b { font-size: 1em; }
+            #leaderboard-rows .row.list .username-col span { font-size: 0.85em; }
+            #leaderboard-rows .row.list .price-wrapper { font-size: 0.75em; }
+            .warning-message { width: 95%; padding: 12px; font-size: 13px; }
+            .prev-lb-btn { padding: 10px 20px; font-size: 0.9em; }
+            .prev-lb-btn svg { width: 16px; height: 16px; }
+            .modal-content { margin: 5% auto; padding: 20px; width: 90%; }
+            .modal-title { font-size: 22px; }
+            .close { font-size: 28px; }
+            .modal-body { font-size: 16px; }
+
+            .coin-container { display: none; }
+            .inner-footer { padding: 2.5rem 1rem; flex-direction: column; text-align: center; }
+            .inner-footer .col { margin-bottom: 1.5rem; }
+            .inner-footer .title { font-size: 1.1em; margin-bottom: 0.8rem; }
+            .inner-footer .subtitle { font-size: 0.8em; }
+            .footer-socials { justify-content: center; }
+            .footer-socials .social-img { width: 20px; height: 20px; }
+        }
+    </style>
+</head>
 <body>
     <div id="toast">
         <span id="message"></span>
     </div>
+
     <div id="rulesModal" class="modal">
         <div class="modal-content">
             <div class="modal-header">
@@ -250,267 +884,414 @@
             </div>
         </div>
     </div>
+
     <canvas id="particleCanvas"></canvas>
     <div class="glow-container">
         <div class="left-glow"></div>
         <div class="right-glow"></div>
     </div>
-    <object type="image/png" data="/assets/left-rainbet.png" id="leftsvg" height="100%">
-    </object>
-    <object type="image/png" data="/assets/right-rainbet.png" id="rightsvg" height="100%">
-    </object>
-    <header>
-        <nav>
-            <div class="logo-title">
-                <img src="/assets/logo.png" alt="Site logo" class="logo">
+
+    <object type="image/png" data="/assets/left-rainbet.png" id="leftsvg" height="100%"></object>
+    <object type="image/png" data="/assets/right-rainbet.png" id="rightsvg" height="100%"></object>
+
+    <header class="flex flex-col md:flex-row justify-between items-center p-6 rounded-b-lg">
+        <nav class="flex flex-col md:flex-row justify-between items-center w-full">
+            <div class="logo-title flex items-center mb-6 md:mb-0">
+                <img src="https://files.kick.com/images/user/62062988/profile_image/conversion/2773ec20-0c2b-4798-a3b5-004838354539-fullsize.webp" alt="Site logo" class="logo mr-5">
                 <h1 class="title">Lobbeluck</h1>
             </div>
-            <ul class="nav-links">
-                
-                <li><a href="/">HOME</a></li>
+            <ul class="nav-links flex space-x-12 relative">
+                <li><a href="/" class="text-xl hover:text-blue-400 transition-colors duration-300">HOME</a></li>
+                <li><a href="#leaderboard-section-main" class="text-xl hover:text-blue-400 transition-colors duration-300">LEADERBOARDS</a></li>
+                <li class="relative">
+                    <a href="#" id="socials-dropdown-toggle" class="text-xl hover:text-blue-400 transition-colors duration-300">Socials <i class="fas fa-caret-down ml-2 text-base"></i></a>
+                    <div id="socials-dropdown-menu" class="dropdown-menu">
+                        <a href="https://www.instagram.com/lobbeluck" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+                        <a href="https://kick.com/LobbeLuck" target="_blank" rel="noopener noreferrer"><i class="fab fa-kickstarter-k"></i> Kick</a>
+                        <a href="https://discord.gg/nHgRKs3d" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a>
+                    </div>
+                </li>
             </ul>
         </nav>
     </header>
-    <div class="toggle-images" style="margin-top: 50px;">
-        <img class="game-image roobet-image" id="roobetImage" src="/assets/rainbet.png"
-            style="cursor: pointer;opacity: 1;" onclick="window.location.href='/leaderboard/rainbet'">
-    </div>
-    <br>
-    <div data-v-1d580398="" data-v-e4097664="" id="appContent">
-        <div data-v-1d580398="">
-            <div data-v-1d580398="" class="row text">
-                <span data-v-1d580398="" class="title">
-                    <div data-v-1d580398="" class="price-wrapper glow">
-                        $ 500
-                    </div> MONTHLY CODE <span class="glow">TIMCODE</span> Leaderboard!
-                </span>
-                <span data-v-1d580398="" class="subtitle" style="color: #FFF;">Every <b>BET</b> on Rainbet under Code
-                    <b>TIMCODE</b>
-                    counts towards your score. <br>
-                    <i>The leaderboard updates every 15 minutes.</i><br>
-                    <div class="warning-message">
-                        Every Bet Counts!
+
+    <section id="leaderboard-hero-section" class="py-32 text-center px-4 flex-grow flex flex-col justify-center items-center">
+        <h1 class="leaderboard-hero-title font-extrabold mb-8 animate-fadeInDown">Rainbet Wager Leaderboard</h1>
+        <p class="leaderboard-hero-subtitle mb-16 animate-fadeInUp">Compete for exclusive rewards by wagering on Rainbet with code TIMCODE!</p>
+    </section>
+
+    <div id="leaderboard-section-main" class="flex flex-col items-center py-24 px-4 bg-gradient-to-br from-gray-900 to-blue-950 rounded-xl mx-auto my-16 max-w-6xl w-full shadow-2xl border-2 border-blue-700">
+        <span class="leaderboard-section-title font-bold mb-16 glow-text-gold">CURRENT LEADERBOARD</span>
+        
+        <div class="row text flex flex-col items-center mt-8 px-4 text-center">
+            <span class="subtitle text-lg text-white">Every <b>BET</b> on Rainbet under Code <b>TIMCODE</b>
+                counts towards your score. <br>
+                <i>The leaderboard updates every 15 minutes.</i><br>
+            </span>
+            <div class="warning-message">
+                Every Bet Counts!
+            </div>
+            <button id="rulesButton" class="prev-lb-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                    <polyline points="10 9 9 9 8 9"></polyline>
+                </svg>
+                RULES
+            </button>
+        </div>
+
+        <div class="css-esk2ah w-full mt-12">
+            <div class="css-2w2ovy">
+                <div class="css-gqrafh" id="top3-cards">
                     </div>
-                        <button id="rulesButton" class="prev-lb-btn"
-                            style="background: #ff8e3c; cursor: pointer; border: none;">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                                <polyline points="14 2 14 8 20 8"></polyline>
-                                <line x1="16" y1="13" x2="8" y2="13"></line>
-                                <line x1="16" y1="17" x2="8" y2="17"></line>
-                                <polyline points="10 9 9 9 8 9"></polyline>
-                            </svg>
-                            RULES
-                        </button>
+
+                <div class="countdown">
+                    <div>
+                        <span class="title"><span class="glow" style="color: #FFF">ENDING</span> IN </span>
+                        <span class="subtitle" id="countdown">X Days XX:XX:XX</span>
                     </div>
-                </span>
-<div class="css-esk2ah">
-  <div class="css-2w2ovy">
-    <!-- Top 3 Player Cards -->
-    <div class="css-gqrafh" id="top3-cards">
-      <!-- Top 3 inserted via JS -->
+                </div>
+            </div>
+            <div id="leaderboard-rows"></div>
+        </div>
     </div>
 
-    <!-- Countdown Timer -->
-    <div class="countdown">
-      <div>
-        <span class="title"><span class="glow" style="color: #FFF">ENDING</span> IN </span>
-        <span class="subtitle" id="countdown">X Days XX:XX:XX</span>
-      </div>
-    </div>
-  </div>
-  <!-- Player Rows (4-10) -->
-  <div id="leaderboard-rows"></div>
-</div>
-    <div data-v-5867ad71="" class="row inner-footer">
-        <div data-v-5867ad71="" class="col-5">
-            <div data-v-5867ad71="" class="content">
-                <div data-v-5867ad71="" class="company"></div><br data-v-5867ad71=""><span data-v-5867ad71=""
-                    class="copyright">Lobbeluck<br data-v-5867ad71=""> All Right Reserved 2025.</span>
+    <div class="inner-footer flex flex-col md:flex-row justify-around items-start py-20 px-6">
+        <div class="col-5 mb-12 md:mb-0 text-center md:text-left">
+            <div class="company"></div><br>
+            <span class="copyright text-base text-gray-400">Lobbeluck &copy; All Right Reserved 2025.</span>
+        </div>
+        <div class="col mb-12 md:mb-0 text-center md:text-left">
+            <span class="title">Info</span>
+            <a href="#" class="block mt-5"><span class="subtitle hover:text-blue-300 transition-colors">Terms of Service</span></a>
+            <a href="#" class="block mt-3"><span class="subtitle hover:text-blue-300 transition-colors">Privacy Policy</span></a>
+        </div>
+        <div class="col mb-12 md:mb-0 text-center md:text-left">
+            <span class="title">Socials</span>
+            <div class="footer-socials space-y-4 mt-5">
+                <a href="https://kick.com/lobbeluck" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
+                    <img src="https://i.ibb.co/qF9w4fFG/kick.png" alt="Kick Logo" class="social-img mr-4">
+                    <span>Kick</span>
+                </a>
+                <a href="https://www.instagram.com/lobbeluck" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
+                    <img src="https://i.ibb.co/xtMG7YS6/instagram.png" alt="Instagram Logo" class="social-img mr-4">
+                    <span>Instagram</span>
+                </a>
+                <a href="https://discord.gg/nHgRKs3d" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
+                    <img src="https://i.ibb.co/27dhcftL/discord.png" alt="Discord Logo" class="social-img mr-4">
+                    <span>Discord</span>
+                </a>
             </div>
         </div>
-
-        <div data-v-5867ad71="" class="col">
-            <span data-v-5867ad71="" class="title">Info</span>
-            <a data-v-5867ad71="" href="/" class=""><span data-v-5867ad71="" class="subtitle">Terms of
-                    Service</span></a>
-            <a data-v-5867ad71="" href="/" class=""><span data-v-5867ad71="" class="subtitle">Privacy
-                    Policy</span></a>
-        </div>
-        <style>
-  .footer-socials {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 10px;
-  }
-
-  .footer-socials a.social {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    font-size: 14px;
-    transition: transform 0.2s;
-  }
-
-  .footer-socials a.social:hover {
-    transform: translateX(4px);
-  }
-
-  .footer-socials .social-img {
-    width: 22px;
-    height: 22px;
-    object-fit: contain;
-  }
-</style>
-
-<div class="col">
-    <span class="title">Socials</span>
-    <div class="footer-socials">
-        <a href="https://kick.com/lobbeluck" target="_blank" class="social">
-            <img src="/assets/kick.png" alt="Kick Logo" class="social-img">
-            <span>Kick</span>
-        </a>
-        <a href="https://www.instagram.com/lobbeluck" target="_blank" class="social">
-            <img src="/assets/instagram.png" alt="X Logo" class="social-img">
-            <span>Instagram</span>
-        </a>
-        <a href="https://discord.gg/nHgRKs3d" target="_blank" class="social">
-            <img src="/assets/discord.png" alt="Discord Logo" class="social-img">
-            <span>Discord</span>
-        </a>
-    </div>
-</div>
-
-
-        <div data-v-5867ad71="" class="col">
-            <span data-v-5867ad71="" class="title">BeGambleAware.com</span>
-            <span data-v-5867ad71="" class="subtitle" style="font-size: 9px;">Responsible Gambling Advisory: While
-                gambling can be entertaining,
-                it's crucial to be aware of the associated risks. Exercise self-control,
-                set limits, and seek support if needed. Enjoy the excitement responsibly
-                and prioritize your well-being.</span>
+        <div class="col text-center md:text-left max-w-sm">
+            <span class="title">BeGambleAware.com</span>
+            <span class="subtitle text-xs text-gray-500 mt-5 block">Responsible Gambling Advisory: While gambling can be entertaining, it's crucial to be aware of the associated risks. Exercise self-control, set limits, and seek support if needed. Enjoy the excitement responsibly and prioritize your well-being.</span>
         </div>
     </div>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"rayId":"93f624c93c488202","version":"2025.4.0-1-g37f21b1","r":1,"token":"6a289e34095c4e319f5a765107c772ad","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' crossorigin="anonymous"></script>
-</body>
-<script>
-    var modal = document.getElementById("rulesModal");
-    var btn = document.getElementById("rulesButton");
-    var span = document.getElementsByClassName("close")[0];
 
-    btn.onclick = function () {
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden";
-        setTimeout(() => {
-            modal.classList.add("show");
-        }, 10);
-    }
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" 
+        xintegrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" 
+        data-cf-beacon='{"rayId":"93f624c93c488202","version":"2025.4.0-1-g37f21b1","r":1,"token":"6a289e34095c4e319f5a765107c772ad","serverTiming":{"name":{"cfExtPri":true,"cfL4":true,"cfSpeedBrain":true,"cfCacheStatus":true}}}' 
+        crossorigin="anonymous">
+    </script>
 
-    span.onclick = closeModal;
+    <script>
+        // --- Particle Background Animation (Canvas) ---
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const numParticles = 150;
+        const particleColor = 'rgba(99, 179, 237, 0.6)';
+        const lineColor = 'rgba(99, 179, 237, 0.15)';
 
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            closeModal();
+        class Particle {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 2.5 + 0.8;
+                this.speedX = Math.random() * 1.5 - 0.75;
+                this.speedY = Math.random() * 1.5 - 0.75;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.y < 0) this.y = canvas.height;
+                if (this.y > canvas.height) this.y = 0;
+            }
+            draw() {
+                ctx.fillStyle = particleColor;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
-    }
 
-    function closeModal() {
-        modal.classList.remove("show");
-        setTimeout(() => {
-            modal.style.display = "none";
-            document.body.style.overflow = "auto";
-        }, 500);
-    }
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            initParticles();
+        }
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(resizeCanvas, 250);
+        });
+        resizeCanvas();
 
-</script>
-<script src="/js/app.js"></script>
-<script src="/js/particles.js"></script>
-<script src="/js/toast.js"></script>
-<script>
-const API_URL = 'https://lobbedata.onrender.com/leaderboard/top14';
-const roobetLogo = '/assets/rainbetlogo.png';
-const rewards = [150, 200, 50, 25, 25];
-const top3Glows = ['0 0 40px #C0C0C0', '0 0 40px #FFD700', '0 0 40px #CD7F32'];
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < numParticles; i++) {
+                const x = Math.random() * canvas.width;
+                const y = Math.random() * canvas.height;
+                particles.push(new Particle(x, y));
+            }
+        }
 
-function updateCountdown() {
-  const el = document.getElementById("countdown");
-  const now = new Date();
+        function connectParticles() {
+            for (let a = 0; a < particles.length; a++) {
+                for (let b = a; b < particles.length; b++) {
+                    const distance = Math.sqrt(
+                        (particles[a].x - particles[b].x) ** 2 +
+                        (particles[a].y - particles[b].y) ** 2
+                    );
+                    if (distance < 150) {
+                        const opacityValue = 1 - (distance / 150);
+                        ctx.strokeStyle = lineColor.replace('0.15', opacityValue.toFixed(2));
+                        ctx.lineWidth = 1.2;
+                        ctx.beginPath();
+                        ctx.moveTo(particles[a].x, particles[a].y);
+                        ctx.lineTo(particles[b].x, particles[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
 
-  // Get the last day of the current month at 23:59:59 UTC
-  const year = now.getUTCFullYear();
-  const month = now.getUTCMonth() + 1; // next month
-  const lastDay = new Date(Date.UTC(year, month, 0, 23, 59, 59)); // 0 gets the last day of previous month
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            connectParticles();
+            requestAnimationFrame(animateParticles);
+        }
 
-  const diff = lastDay - now;
+        window.addEventListener('load', () => {
+            initParticles();
+            animateParticles();
+        });
 
-  if (diff <= 0) return el.textContent = "Ended";
+        // --- Draggable Player Logic (Included for consistency, though not on this page) ---
+        // These elements are not present in this HTML, but the logic is kept for completeness
+        // if the user decides to add a draggable player to the leaderboard page later.
+        const player = document.getElementById('draggable-player');
+        const dragHandle = document.getElementById('drag-handle');
+        const closeBtn = document.getElementById('close-btn');
+        const minimizedIcon = document.getElementById('minimized-icon');
+        const openBtn = document.getElementById('open-btn');
 
-  const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const m = Math.floor((diff / (1000 * 60)) % 60);
-  const s = Math.floor((diff / 1000) % 60);
+        let isDragging = false;
+        let offsetX, offsetY;
 
-  el.textContent = `${d}d ${h}h ${m}m ${s}s`;
-}
+        if (player && dragHandle) { // Only add listeners if elements exist
+            dragHandle.addEventListener('mousedown', (e) => {
+                isDragging = true;
+                offsetX = e.clientX - player.getBoundingClientRect().left;
+                offsetY = e.clientY - player.getBoundingClientRect().top;
+                dragHandle.style.cursor = 'grabbing';
+                player.style.transition = 'none';
+            });
 
-setInterval(updateCountdown, 1000);
-updateCountdown();
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                let newX = e.clientX - offsetX;
+                let newY = e.clientY - offsetY;
+                newX = Math.max(0, Math.min(newX, window.innerWidth - player.offsetWidth));
+                newY = Math.max(0, Math.min(newY, window.innerHeight - player.offsetHeight));
+                player.style.left = `${newX}px`;
+                player.style.top = `${newY}px`;
+            });
+
+            document.addEventListener('mouseup', () => {
+                isDragging = false;
+                dragHandle.style.cursor = 'grab';
+                player.style.transition = 'all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1)';
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', () => {
+                    player.style.display = 'none';
+                    if (minimizedIcon) minimizedIcon.style.display = 'flex';
+                });
+            }
+            if (openBtn) {
+                openBtn.addEventListener('click', () => {
+                    player.style.display = 'block';
+                    if (minimizedIcon) minimizedIcon.style.display = 'none';
+                });
+            }
+        }
 
 
-async function loadLeaderboard() {
-  const res = await fetch(API_URL);
-  const data = await res.json();
-  const top3Container = document.querySelector(".css-gqrafh");
-  const rowsContainer = document.getElementById("leaderboard-rows");
+        // --- Socials Dropdown Logic ---
+        const socialsToggle = document.getElementById('socials-dropdown-toggle');
+        const socialsMenu = document.getElementById('socials-dropdown-menu');
 
-  data.forEach((entry, index) => {
-    const place = index + 1;
-    const reward = index < rewards.length ? `$ ${rewards[index]}` : '$ 0';
-    const wagered = `$ ${Number(entry.wagered).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-    const username = entry.username;
+        if (socialsToggle && socialsMenu) { // Only add listeners if elements exist
+            socialsToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                socialsMenu.classList.toggle('show');
+            });
 
-    if (index < 3) {
-      const card = document.createElement('div');
-      card.className = 'css-jehefp';
-      card.style.boxShadow = top3Glows[index];
-      card.style.position = 'relative';
-      if (index === 1) card.style.transform = 'translateY(25px) scale(1.2)';
-      if (index === 2) card.style.transform = 'translateY(25px)';
-      card.innerHTML = `
-        <img src="${roobetLogo}" style="width: 96px; height: auto; border-radius: 12px;">
-        <div class="css-hca0vm"><span class="css-15a1lq3" style="font-weight:bold;">${username}</span></div>
-        <div class="css-7ahevu ejrykqo0"><span class="css-1vqddgv">Wagered: </span>
-          <span class="css-18icuxn"><div class="css-1y0ox2o"><span class="css-114dvlx">${wagered}</span></div></span>
-        </div>
-        <span class="css-v4675v"><div class="css-1y0ox2o"><span class="css-114dvlx glow">${reward}</span></div></span>
-      `;
-      top3Container.appendChild(card);
-    } else {
-      const row = document.createElement('div');
-      row.className = 'row list row-cols-5';
-      row.setAttribute('data-v-1d580398', '');
-      row.innerHTML = `
-        <div class="hide-mobile col-2"><b style="font-size: 18px;">#${place}</b></div>
-        <div class="col-5">
-          <img src="${roobetLogo}" width="22" style="margin-right: 8px;">
-          <span style="font-weight:bold; font-size: 16px;">${username}</span>
-        </div>
-        <div class="col-2">
-          <div class="price-wrapper glow" style="font-weight:bold; font-size: 15px;">${reward}</div>
-        </div>
-        <div class="col-3">
-          <div class="price-wrapper" style="color: #FFF; font-weight:bold; font-size: 15px;">${wagered}</div>
-        </div>
-      `;
-      rowsContainer.appendChild(row);
-    }
-  });
-}
+            document.addEventListener('click', (e) => {
+                if (!socialsToggle.contains(e.target) && !socialsMenu.contains(e.target)) {
+                    socialsMenu.classList.remove('show');
+                }
+            });
+        }
 
-loadLeaderboard();
-</script>
+        // --- Copy Promo Code Functionality (Not directly used on this page, but kept for reference) ---
+        function copyPromoCode() {
+            const promoCode = 'TIMCODE';
+            const textarea = document.createElement('textarea');
+            textarea.value = promoCode;
+            document.body.appendChild(textarea);
+            textarea.select();
+
+            try {
+                document.execCommand('copy');
+                showToast('Promo code copied: ' + promoCode);
+            } catch (err) {
+                console.error('Failed to copy promo code:', err);
+                showToast('Failed to copy promo code. Please copy manually.');
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        // --- Toast Notification Function ---
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const messageSpan = document.getElementById('message');
+            if (toast && messageSpan) { // Ensure elements exist
+                messageSpan.textContent = message;
+                toast.classList.add('show');
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+        }
+
+        // --- Countdown Timer Logic ---
+        function updateCountdown() {
+            const el = document.getElementById("countdown");
+            if (!el) return; // Exit if countdown element doesn't exist
+
+            const now = new Date();
+            const year = now.getUTCFullYear();
+            const month = now.getUTCMonth();
+            const lastDayOfCurrentMonth = new Date(Date.UTC(year, month + 1, 0, 23, 59, 59));
+            const diff = lastDayOfCurrentMonth - now;
+
+            if (diff <= 0) {
+                el.textContent = "Ended";
+                return;
+            }
+
+            const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const h = Math.floor((diff / (1000 * 60 * 60)) % 24);
+            const m = Math.floor((diff / (1000 * 60)) % 60);
+            const s = Math.floor((diff / 1000) % 60);
+
+            el.textContent = `${d}d ${h}h ${m}m ${s}s`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // --- Leaderboard Data Fetching and Rendering ---
+        const API_URL = 'https://lobbedata.onrender.com/leaderboard/top14';
+        const gameLogoPlaceholder = 'https://i.ibb.co/ynDXn5MS/image.png'; 
+        const rewards = [150, 200, 50, 25, 25];
+        const top3Glows = ['0 0 40px #C0C0C0', '0 0 40px #FFD700', '0 0 40px #CD7F32'];
+
+        async function loadLeaderboard() {
+            try {
+                const res = await fetch(API_URL);
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                const data = await res.json();
+                const top3Container = document.querySelector(".css-gqrafh");
+                const rowsContainer = document.getElementById("leaderboard-rows");
+
+                if (!top3Container || !rowsContainer) {
+                    console.error("Leaderboard containers not found.");
+                    return;
+                }
+
+                top3Container.innerHTML = '';
+                rowsContainer.innerHTML = '';
+
+                data.forEach((entry, index) => {
+                    const place = index + 1;
+                    const reward = index < rewards.length ? `$ ${rewards[index]}` : '$ 0';
+                    const wagered = `$ ${Number(entry.wagered).toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+                    const username = entry.username;
+
+                    if (index < 3) {
+                        const card = document.createElement('div');
+                        card.className = 'css-jehefp';
+                        card.style.boxShadow = top3Glows[index];
+                        card.style.position = 'relative';
+                        if (index === 0) card.style.transform = 'translateY(25px)';
+                        if (index === 1) card.style.transform = 'translateY(0px) scale(1.1)';
+                        if (index === 2) card.style.transform = 'translateY(25px)';
+                        
+                        card.innerHTML = `
+                            <img src="${gameLogoPlaceholder}" style="width: 96px; height: auto; border-radius: 12px;">
+                            <div class="css-hca0vm"><span class="css-15a1lq3" style="font-weight:bold;">${username}</span></div>
+                            <div class="css-7ahevu ejrykqo0"><span class="css-1vqddgv">Wagered: </span>
+                            <span class="css-18icuxn"><div class="css-1y0ox2o"><span class="css-114dvlx">${wagered}</span></div></span>
+                            </div>
+                            <span class="css-v4675v"><div class="css-1y0ox2o"><span class="css-114dvlx glow">${reward}</span></div></span>
+                        `;
+                        top3Container.appendChild(card);
+                    } else {
+                        const row = document.createElement('div');
+                        // Apply new column classes for better spacing and alignment
+                        row.className = 'row list flex items-center justify-between px-6 py-4';
+                        row.setAttribute('data-v-1d580398', '');
+                        row.innerHTML = `
+                            <div class="rank-col"><b class="font-orbitron text-xl text-blue-300 glow-text-blue">#${place}</b></div>
+                            <div class="username-col">
+                                <img src="${gameLogoPlaceholder}" class="w-6 h-6 rounded-md mr-3 border border-gray-700">
+                                <span class="font-bold text-lg">${username}</span>
+                            </div>
+                            <div class="reward-col">
+                                <div class="price-wrapper glow-text-gold font-bold text-lg">${reward}</div>
+                            </div>
+                            <div class="wagered-col">
+                                <div class="price-wrapper text-white font-bold text-lg">${wagered}</div>
+                            </div>
+                        `;
+                        rowsContainer.appendChild(row);
+                    }
+                });
+            } catch (error) {
+                console.error("Failed to load leaderboard data:", error);
+                rowsContainer.innerHTML = `<p style="text-align:center; color:red; font-size:1.2em;">Failed to load leaderboard. Please try again later.</p>`;
+            }
+        }
+
+        loadLeaderboard();
+    </script>
+</body>
+</html>
