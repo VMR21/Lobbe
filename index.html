@@ -29,15 +29,15 @@
             overflow-x: hidden; /* Prevents horizontal scrolling issues */
             position: relative; /* Essential for positioning background elements */
             scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-        }
+        } */
 
         /* --- Global Glow Effects (for consistency and impact) --- */
         .glow-text-blue {
             text-shadow: 0 0 15px rgba(99, 179, 237, 0.8), 0 0 30px rgba(99, 179, 237, 0.6);
-        }
+        } */
         .glow-text-gold {
             text-shadow: 0 0 12px rgba(246, 224, 94, 0.8), 0 0 25px rgba(246, 224, 94, 0.6);
-        }
+        } */
         .glow-box-blue {
             box-shadow: 0 0 100px rgba(39, 117, 202, 0.9);
         }
@@ -510,7 +510,7 @@
             pointer-events: none;
             opacity: 0.9; /* More visible particles */
         }
-        .glow-container {
+        /* .glow-container {
             position: fixed;
             top: 0;
             left: 0;
@@ -519,7 +519,7 @@
             pointer-events: none;
             z-index: -11; /* Even further back */
         }
-        .left-glow, .right-glow {
+        .left-glow, /* .right-glow {
             position: absolute;
             width: 60vw; /* Larger glow areas */
             height: 60vw;
@@ -528,18 +528,18 @@
             opacity: 0.5; /* More visible */
             animation: pulseGlow 7s infinite alternate; /* Slower, more subtle pulse */
         }
-        .left-glow {
+        /* .left-glow {
             top: 0%; /* Closer to top */
             left: -20%; /* Further out */
             background-color: rgba(39, 117, 202, 0.9); /* Stronger blue glow */
         }
-        .right-glow {
+        /* .right-glow {
             bottom: 0%; /* Closer to bottom */
             right: -20%; /* Further out */
             background-color: rgba(246, 224, 94, 0.9); /* Stronger gold glow */
             animation-delay: 3s; /* Longer delay */
         }
-        @keyframes pulseGlow {
+        /* @keyframes pulseGlow {
             from { transform: scale(0.8); opacity: 0.5; }
             to { transform: scale(1.2); opacity: 0.7; }
         }
@@ -815,6 +815,12 @@ html, body {
   overflow-x: hidden !important;
 }
 
+
+@media (max-width: 768px) {
+    .draggable, .minimized-icon {
+        display: none !important;
+    }
+}
 </style>
 </head>
 <body class="antialiased" style="max-width: 100vw; overflow-x: hidden;">
@@ -893,17 +899,17 @@ html, body {
 <span class="title font-orbitron text-4xl font-bold mb-16 glow-text-gold">Connect With Us!</span>
 <div class="social-media-cards flex flex-wrap justify-center">
 <a class="card kick" href="https://kick.com/LobbeLuck" rel="noopener noreferrer" target="_blank">
-<img alt="Kick Logo" class="icon" src="https://i.ibb.co/qF9w4fFG/kick.png">
+<img alt="Kick Logo" class="icon" src="https://i.ibb.co/qF9w4fFG/kick.png"/>
 <span>@Lobbeluck</span>
-</img></a>
+</a>
 <a class="card instagram" href="https://www.instagram.com/lobbeluck" rel="noopener noreferrer" target="_blank">
-<img alt="Instagram Logo" class="icon" src="https://i.ibb.co/xtMG7YS6/instagram.png">
+<img alt="Instagram Logo" class="icon" src="https://i.ibb.co/xtMG7YS6/instagram.png"/>
 <span>@Lobbeluck</span>
-</img></a>
+</a>
 <a class="card discord" href="https://discord.gg/nHgRKs3d" rel="noopener noreferrer" target="_blank">
-<img alt="Discord Logo" class="icon" src="https://i.ibb.co/27dhcftL/discord.png">
+<img alt="Discord Logo" class="icon" src="https://i.ibb.co/27dhcftL/discord.png"/>
 <span>@Lobbeluck</span>
-</img></a>
+</a>
 </div>
 </div>
 <div class="inner-footer flex flex-col md:flex-row justify-around items-start py-20 px-6 mt-auto">
