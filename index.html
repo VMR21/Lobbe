@@ -1,17 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="en" style="max-width: 100vw; overflow-x: hidden;">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LobbeLuck</title>
-    <meta name="description" content="Experience exclusive wager races and premium rewards on Rainbet with code TIMCODE. Join the LobbeLuck community!">
-    <meta property="og:image" content="https://placehold.co/1200x630/0A111E/63B3ED?text=LobbeLuck+Wager+Races">
-    <link rel="icon" type="image/png" href="https://files.kick.com/images/user/62062988/profile_image/conversion/2773ec20-0c2b-4798-a3b5-004838354539-fullsize.webp">
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LobbeLuck</title>
+<meta content="Experience exclusive wager races and premium rewards on Rainbet with code TIMCODE. Join the LobbeLuck community!" name="description"/>
+<meta content="https://placehold.co/1200x630/0A111E/63B3ED?text=LobbeLuck+Wager+Races" property="og:image"/>
+<link href="https://files.kick.com/images/user/62062988/profile_image/conversion/2773ec20-0c2b-4798-a3b5-004838354539-fullsize.webp" rel="icon" type="image/png"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
+<style>
         /* --- Global Styles & Font Imports --- */
         /* Inter for clean, readable body text */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -805,144 +804,144 @@
     }
 }
 
+
+
+/* Hard clamp for layout overflow issues */
+* {
+  max-width: 100vw !important;
+  box-sizing: border-box;
+}
+html, body {
+  overflow-x: hidden !important;
+}
+
 </style>
 </head>
-<body class="antialiased">
-    <canvas id="particleCanvas"></canvas>
-
-    <div class="glow-container">
-        <div class="left-glow"></div>
-        <div class="right-glow"></div>
-    </div>
-
-    <img src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" alt="Rainbet Left" id="leftsvg" class="absolute left-0 top-0 h-full opacity-3 z-[-10]" style="display: none;">
-    <img src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" alt="Rainbet Right" id="rightsvg" class="absolute right-0 top-0 h-full opacity-3 z-[-10]" style="display: none;">
-
-    <div class="coin-container">
-        <img src="https://i.ibb.co/j92H4Lws/image-removebg-preview-5.png" alt="Floating Coin" class="coin-left">
-        <img src="https://i.ibb.co/j92H4Lws/image-removebg-preview-5.png" alt="Floating Coin" class="coin-right">
-    </div>
-
-    <div id="draggable-player" class="draggable">
-        <div id="controls" class="controls">
-            <div id="drag-handle" class="drag-handle">&#x2630; LobbeLuck Stream</div>
-            <button id="close-btn" class="close-btn" aria-label="Close Stream">&times;</button>
-        </div>
-        <iframe src="https://player.kick.com/LobbeLuck" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-    </div>
-    <div id="minimized-icon" class="minimized-icon">
-        <button id="open-btn" class="open-btn" aria-label="Open Stream Player"><i class="fas fa-play"></i></button>
-    </div>
-
-    <header class="flex flex-col md:flex-row justify-between items-center p-6 rounded-b-lg">
-        <div class="logo-title flex items-center mb-6 md:mb-0">
-            <img src="https://files.kick.com/images/user/62062988/profile_image/conversion/2773ec20-0c2b-4798-a3b5-004838354539-fullsize.webp" alt="LobbeLuck Logo" class="logo mr-5">
-            <h1 class="title text-3xl font-extrabold leading-tight">LobbeLuck</h1>
-        </div>
-        <nav>
-            <ul class="nav-links flex space-x-12 relative">
-                <li><a href="#hero-section" class="text-xl hover:text-blue-400 transition-colors duration-300">Home</a></li>
-                <li><a href="/leaderboard" class="text-xl hover:text-blue-400 transition-colors duration-300">Leaderboard</a></li>
-                <li class="relative">
-                    <a href="#socials-section" id="socials-dropdown-toggle" class="text-xl hover:text-blue-400 transition-colors duration-300">Socials <i class="fas fa-caret-down ml-2 text-base"></i></a>
-                    <div id="socials-dropdown-menu" class="dropdown-menu">
-                        <a href="https://www.instagram.com/lobbeluck" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
-                        <a href="https://kick.com/LobbeLuck" target="_blank" rel="noopener noreferrer"><i class="fab fa-kickstarter-k"></i> Kick</a>
-                        <a href="https://discord.gg/nHgRKs3d" target="_blank" rel="noopener noreferrer"><i class="fab fa-discord"></i> Discord</a>
-                    </div>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="hero-section" class="hero py-40 text-center px-4 flex-grow flex flex-col justify-center items-center">
-        <h1 class="hero-title font-extrabold mb-8 animate-fadeInDown">Your Winning Streak Starts Here!</h1>
-        <p class="hero-subtitle mb-16 animate-fadeInUp">Welcome to the official hub for LobbeLuck - exclusive wager races, vibrant community, and top-tier rewards. Join the elite!</p>
-    </section>
-
-    <div class="card-container py-24 px-4">
-        <a href="https://rainbet.com/?r=timcode" class="card-link block mx-auto" target="_blank" rel="noopener noreferrer">
-            <div class="card-content flex flex-col items-center">
-                <div class="mb-12">
-                    <img src="https://i.ibb.co/ynDXn5MS/image.png" alt="Rainbet Logo" class="rounded-2xl shadow-lg border-4 border-yellow-400">
-                </div>
-                <div class="code-container flex items-center justify-center mb-12">
-                    <i class="fas fa-angle-double-right text-blue-400"></i>
-                    <p class="font-orbitron text-5xl text-yellow-300 font-bold glow-text-gold mx-6">Code</p>
-                    <p class="font-orbitron text-5xl text-yellow-300 font-bold glow-text-gold">TIMCODE</p>
-                    <i class="fas fa-angle-double-left text-blue-400"></i>
-                </div>
-                <div class="space-y-8 text-center">
-                    <div class="description flex items-center justify-center">
-                        <i class="far fa-check-circle mr-5 text-green-500 text-3xl"></i>
-                        <p class="text-2xl">EXCLUSIVE REWARDS</p>
-                    </div>
-                    <div class="description flex items-center justify-center">
-                        <i class="far fa-check-circle mr-5 text-green-500 text-3xl"></i>
-                        <p class="text-2xl">LEADERBOARD ACCESS</p>
-                    </div>
-                </div>
-                <button class="signup-button" tabindex="0">Sign up Now</button>
-            </div>
-        </a>
-    </div>
-
-    <div id="socials-section" class="flex flex-col items-center py-24 px-4 bg-gradient-to-tl from-gray-900 to-blue-950 rounded-xl mx-auto my-16 max-w-6xl w-full shadow-2xl border-2 border-blue-700">
-        <span class="title font-orbitron text-4xl font-bold mb-16 glow-text-gold">Connect With Us!</span>
-        <div class="social-media-cards flex flex-wrap justify-center">
-            <a href="https://kick.com/LobbeLuck" target="_blank" rel="noopener noreferrer" class="card kick">
-                <img src="https://i.ibb.co/qF9w4fFG/kick.png" alt="Kick Logo" class="icon" />
-                <span>@Lobbeluck</span>
-            </a>
-            <a href="https://www.instagram.com/lobbeluck" target="_blank" rel="noopener noreferrer" class="card instagram">
-                <img src="https://i.ibb.co/xtMG7YS6/instagram.png" alt="Instagram Logo" class="icon" />
-                <span>@Lobbeluck</span>
-            </a>
-            <a href="https://discord.gg/nHgRKs3d" target="_blank" rel="noopener noreferrer" class="card discord">
-                <img src="https://i.ibb.co/27dhcftL/discord.png" alt="Discord Logo" class="icon" />
-                <span>@Lobbeluck</span>
-            </a>
-        </div>
-    </div>
-
-    <div class="inner-footer flex flex-col md:flex-row justify-around items-start py-20 px-6 mt-auto">
-        <div class="col-5 mb-12 md:mb-0 text-center md:text-left">
-            <div class="company"></div><br>
-            <span class="copyright text-base text-gray-400">LobbeLuck &copy; All Rights Reserved 2025.</span>
-        </div>
-        <div class="col mb-12 md:mb-0 text-center md:text-left">
-            <span class="title">Info</span>
-            <a href="#" class="block mt-5"><span class="subtitle hover:text-blue-300 transition-colors">Terms of Service</span></a>
-            <a href="#" class="block mt-3"><span class="subtitle hover:text-blue-300 transition-colors">Privacy Policy</span></a>
-        </div>
-        <div class="col mb-12 md:mb-0 text-center md:text-left">
-            <span class="title">Socials</span>
-            <div class="footer-socials space-y-4 mt-5">
-                <a href="https://kick.com/lobbeluck" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
-                    <img src="https://i.ibb.co/qF9w4fFG/kick.png" alt="Kick Logo" class="social-img mr-4">
-                    <span>Kick</span>
-                </a>
-                <a href="https://www.instagram.com/lobbeluck" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
-                    <img src="https://i.ibb.co/xtMG7YS6/instagram.png" alt="Instagram Logo" class="social-img mr-4">
-                    <span>Instagram</span>
-                </a>
-                <a href="https://discord.gg/nHgRKs3d" target="_blank" rel="noopener noreferrer" class="social flex items-center justify-center md:justify-start">
-                    <img src="https://i.ibb.co/27dhcftL/discord.png" alt="Discord Logo" class="social-img mr-4">
-                    <span>Discord</span>
-                </a>
-            </div>
-        </div>
-        <div class="col text-center md:text-left max-w-sm">
-            <span class="title">BeGambleAware.com</span>
-            <span class="subtitle text-xs text-gray-500 mt-5 block">Responsible Gambling Advisory: While gambling can be entertaining, it's crucial to be aware of the associated risks. Exercise self-control, set limits, and seek support if needed. Enjoy the excitement responsibly and prioritize your well-being. We are not responsible for any losses or damages caused by gambling.</span>
-        </div>
-    </div>
-
-    <div id="toast">
-        <span id="message"></span>
-    </div>
-
-    <script>
+<body class="antialiased" style="max-width: 100vw; overflow-x: hidden;">
+<canvas id="particleCanvas"></canvas>
+<div class="glow-container">
+<div class="left-glow"></div>
+<div class="right-glow"></div>
+</div>
+<img alt="Rainbet Left" class="absolute left-0 top-0 h-full opacity-3 z-[-10]" id="leftsvg" src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" style="display: none;"/>
+<img alt="Rainbet Right" class="absolute right-0 top-0 h-full opacity-3 z-[-10]" id="rightsvg" src="https://placehold.co/200x600/0A111E/2775ca?text=RAINBET" style="display: none;"/>
+<div class="coin-container">
+<img alt="Floating Coin" class="coin-left" src="https://i.ibb.co/j92H4Lws/image-removebg-preview-5.png"/>
+<img alt="Floating Coin" class="coin-right" src="https://i.ibb.co/j92H4Lws/image-removebg-preview-5.png"/>
+</div>
+<div class="draggable" id="draggable-player">
+<div class="controls" id="controls">
+<div class="drag-handle" id="drag-handle">☰ LobbeLuck Stream</div>
+<button aria-label="Close Stream" class="close-btn" id="close-btn">×</button>
+</div>
+<iframe allow="autoplay; fullscreen" allowfullscreen="" frameborder="0" src="https://player.kick.com/LobbeLuck"></iframe>
+</div>
+<div class="minimized-icon" id="minimized-icon">
+<button aria-label="Open Stream Player" class="open-btn" id="open-btn"><i class="fas fa-play"></i></button>
+</div>
+<header class="flex flex-col md:flex-row justify-between items-center p-6 rounded-b-lg">
+<div class="logo-title flex items-center mb-6 md:mb-0">
+<img alt="LobbeLuck Logo" class="logo mr-5" src="https://files.kick.com/images/user/62062988/profile_image/conversion/2773ec20-0c2b-4798-a3b5-004838354539-fullsize.webp"/>
+<h1 class="title text-3xl font-extrabold leading-tight">LobbeLuck</h1>
+</div>
+<nav>
+<ul class="nav-links flex space-x-12 relative">
+<li><a class="text-xl hover:text-blue-400 transition-colors duration-300" href="#hero-section">Home</a></li>
+<li><a class="text-xl hover:text-blue-400 transition-colors duration-300" href="/leaderboard">Leaderboard</a></li>
+<li class="relative">
+<a class="text-xl hover:text-blue-400 transition-colors duration-300" href="#socials-section" id="socials-dropdown-toggle">Socials <i class="fas fa-caret-down ml-2 text-base"></i></a>
+<div class="dropdown-menu" id="socials-dropdown-menu">
+<a href="https://www.instagram.com/lobbeluck" rel="noopener noreferrer" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+<a href="https://kick.com/LobbeLuck" rel="noopener noreferrer" target="_blank"><i class="fab fa-kickstarter-k"></i> Kick</a>
+<a href="https://discord.gg/nHgRKs3d" rel="noopener noreferrer" target="_blank"><i class="fab fa-discord"></i> Discord</a>
+</div>
+</li>
+</ul>
+</nav>
+</header>
+<section class="hero py-40 text-center px-4 flex-grow flex flex-col justify-center items-center" id="hero-section">
+<h1 class="hero-title font-extrabold mb-8 animate-fadeInDown">Your Winning Streak Starts Here!</h1>
+<p class="hero-subtitle mb-16 animate-fadeInUp">Welcome to the official hub for LobbeLuck - exclusive wager races, vibrant community, and top-tier rewards. Join the elite!</p>
+</section>
+<div class="card-container py-24 px-4">
+<a class="card-link block mx-auto" href="https://rainbet.com/?r=timcode" rel="noopener noreferrer" target="_blank">
+<div class="card-content flex flex-col items-center">
+<div class="mb-12">
+<img alt="Rainbet Logo" class="rounded-2xl shadow-lg border-4 border-yellow-400" src="https://i.ibb.co/ynDXn5MS/image.png"/>
+</div>
+<div class="code-container flex items-center justify-center mb-12">
+<i class="fas fa-angle-double-right text-blue-400"></i>
+<p class="font-orbitron text-5xl text-yellow-300 font-bold glow-text-gold mx-6">Code</p>
+<p class="font-orbitron text-5xl text-yellow-300 font-bold glow-text-gold">TIMCODE</p>
+<i class="fas fa-angle-double-left text-blue-400"></i>
+</div>
+<div class="space-y-8 text-center">
+<div class="description flex items-center justify-center">
+<i class="far fa-check-circle mr-5 text-green-500 text-3xl"></i>
+<p class="text-2xl">EXCLUSIVE REWARDS</p>
+</div>
+<div class="description flex items-center justify-center">
+<i class="far fa-check-circle mr-5 text-green-500 text-3xl"></i>
+<p class="text-2xl">LEADERBOARD ACCESS</p>
+</div>
+</div>
+<button class="signup-button" tabindex="0">Sign up Now</button>
+</div>
+</a>
+</div>
+<div class="flex flex-col items-center py-24 px-4 bg-gradient-to-tl from-gray-900 to-blue-950 rounded-xl mx-auto my-16 max-w-6xl w-full shadow-2xl border-2 border-blue-700" id="socials-section">
+<span class="title font-orbitron text-4xl font-bold mb-16 glow-text-gold">Connect With Us!</span>
+<div class="social-media-cards flex flex-wrap justify-center">
+<a class="card kick" href="https://kick.com/LobbeLuck" rel="noopener noreferrer" target="_blank">
+<img alt="Kick Logo" class="icon" src="https://i.ibb.co/qF9w4fFG/kick.png">
+<span>@Lobbeluck</span>
+</img></a>
+<a class="card instagram" href="https://www.instagram.com/lobbeluck" rel="noopener noreferrer" target="_blank">
+<img alt="Instagram Logo" class="icon" src="https://i.ibb.co/xtMG7YS6/instagram.png">
+<span>@Lobbeluck</span>
+</img></a>
+<a class="card discord" href="https://discord.gg/nHgRKs3d" rel="noopener noreferrer" target="_blank">
+<img alt="Discord Logo" class="icon" src="https://i.ibb.co/27dhcftL/discord.png">
+<span>@Lobbeluck</span>
+</img></a>
+</div>
+</div>
+<div class="inner-footer flex flex-col md:flex-row justify-around items-start py-20 px-6 mt-auto">
+<div class="col-5 mb-12 md:mb-0 text-center md:text-left">
+<div class="company"></div><br/>
+<span class="copyright text-base text-gray-400">LobbeLuck © All Rights Reserved 2025.</span>
+</div>
+<div class="col mb-12 md:mb-0 text-center md:text-left">
+<span class="title">Info</span>
+<a class="block mt-5" href="#"><span class="subtitle hover:text-blue-300 transition-colors">Terms of Service</span></a>
+<a class="block mt-3" href="#"><span class="subtitle hover:text-blue-300 transition-colors">Privacy Policy</span></a>
+</div>
+<div class="col mb-12 md:mb-0 text-center md:text-left">
+<span class="title">Socials</span>
+<div class="footer-socials space-y-4 mt-5">
+<a class="social flex items-center justify-center md:justify-start" href="https://kick.com/lobbeluck" rel="noopener noreferrer" target="_blank">
+<img alt="Kick Logo" class="social-img mr-4" src="https://i.ibb.co/qF9w4fFG/kick.png"/>
+<span>Kick</span>
+</a>
+<a class="social flex items-center justify-center md:justify-start" href="https://www.instagram.com/lobbeluck" rel="noopener noreferrer" target="_blank">
+<img alt="Instagram Logo" class="social-img mr-4" src="https://i.ibb.co/xtMG7YS6/instagram.png"/>
+<span>Instagram</span>
+</a>
+<a class="social flex items-center justify-center md:justify-start" href="https://discord.gg/nHgRKs3d" rel="noopener noreferrer" target="_blank">
+<img alt="Discord Logo" class="social-img mr-4" src="https://i.ibb.co/27dhcftL/discord.png"/>
+<span>Discord</span>
+</a>
+</div>
+</div>
+<div class="col text-center md:text-left max-w-sm">
+<span class="title">BeGambleAware.com</span>
+<span class="subtitle text-xs text-gray-500 mt-5 block">Responsible Gambling Advisory: While gambling can be entertaining, it's crucial to be aware of the associated risks. Exercise self-control, set limits, and seek support if needed. Enjoy the excitement responsibly and prioritize your well-being. We are not responsible for any losses or damages caused by gambling.</span>
+</div>
+</div>
+<div id="toast">
+<span id="message"></span>
+</div>
+<script>
         // --- Particle Background Animation (Canvas) ---
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
