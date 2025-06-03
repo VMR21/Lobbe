@@ -880,6 +880,32 @@ body::before {
   box-shadow: 0 0 80px rgba(99, 179, 237, 0.3) !important;
 }
 
+
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90vw;
+    padding: 1.5rem;
+  }
+
+  .modal-content h2 {
+    font-size: 1.3rem;
+  }
+
+  .modal-content p, .modal-content input {
+    font-size: 1rem;
+  }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  z-index: -1;
+}
 </style>
 </head>
 <body class="antialiased bg-[#0A111E] text-gray-100">
