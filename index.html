@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html lang="en" style="max-width: 100vw; overflow-x: hidden;">
+<html lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
@@ -11,6 +11,7 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"/>
 <style>
+body { background-image: url('bg-desktop.jpg'); background-size: cover; background-attachment: fixed; background-position: center; }
         /* --- Global Styles & Font Imports --- */
         /* Inter for clean, readable body text */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
@@ -161,6 +162,7 @@
 
         /* --- Hero Section Styling --- */
         .hero-title {
+    font-size: clamp(2.5rem, 5vw, 5rem);
             animation: fadeInDown 1.5s ease-out forwards; /* Slower, more dramatic animation */
             color: #63B3ED;
             text-shadow: 0 0 40px rgba(99, 179, 237, 1), 0 0 80px rgba(99, 179, 237, 0.8); /* More intense, layered glow */
@@ -171,6 +173,7 @@
         }
 
         .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.6rem);
             animation: fadeInUp 1.5s ease-out forwards;
             animation-delay: 0.5s; /* Longer delay for sequential animation */
             opacity: 0;
@@ -232,6 +235,8 @@
         }
 
         .card-link .card-content {
+    width: 100%;
+    max-width: 500px;
             background: linear-gradient(145deg, #1A202C 0%, #0F172A 100%); /* Darker blue gradient for card */
             border-radius: 2rem; /* Significantly more rounded corners */
             padding: 3.5rem; /* Generous padding inside the card */
@@ -378,6 +383,8 @@
 
         /* --- Draggable Player Styling --- */
         .draggable {
+    width: clamp(280px, 30vw, 400px);
+    height: clamp(180px, 25vw, 280px);
             position: fixed;
             bottom: 25px; /* More space from bottom */
             right: 25px; /* More space from right */
@@ -585,10 +592,14 @@
 
         /* --- Responsive Adjustments (Crucial for mobile experience) --- */
         @media (max-width: 1280px) { /* Adjust for larger tablets/small laptops */
-            .hero-title { font-size: 5em; }
-            .hero-subtitle { font-size: 1.5em; }
+            .hero-title {
+    font-size: clamp(2.5rem, 5vw, 5rem); font-size: 5em; }
+            .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.6rem); font-size: 1.5em; }
             .leaderboard-section .title { font-size: 3.5em; }
-            .card-link .card-content { max-width: 450px; padding: 3rem; }
+            .card-link .card-content {
+    width: 100%;
+    max-width: 500px; max-width: 450px; padding: 3rem; }
             .card-link img { width: 140px; }
             .code-container p { font-size: 2rem; }
             .signup-button { padding: 1.2rem 3rem; font-size: 1.2em; }
@@ -596,7 +607,9 @@
             .social-media-cards .card { padding: 20px 30px; }
             .social-media-cards .icon { width: 38px; height: 38px; }
             .coin-left, .coin-right { height: 150px; }
-            .draggable { width: 350px; height: 250px; }
+            .draggable {
+    width: clamp(280px, 30vw, 400px);
+    height: clamp(180px, 25vw, 280px); width: 350px; height: 250px; }
             .minimized-icon { width: 80px; height: 80px; }
         }
 
@@ -608,12 +621,16 @@
             .dropdown-menu a { padding: 12px 18px; font-size: 1em; }
             .dropdown-menu a .fab { font-size: 1.1em; }
 
-            .hero-title { font-size: 4em; letter-spacing: 2px; }
-            .hero-subtitle { font-size: 1.3em; }
+            .hero-title {
+    font-size: clamp(2.5rem, 5vw, 5rem); font-size: 4em; letter-spacing: 2px; }
+            .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.6rem); font-size: 1.3em; }
             .leaderboard-section .title { font-size: 3em; letter-spacing: 1.5px; }
             .toggle-images .label { font-size: 1.4em; padding: 8px 20px; }
 
-            .card-link .card-content { padding: 2.5rem; border-radius: 1.5rem; }
+            .card-link .card-content {
+    width: 100%;
+    max-width: 500px; padding: 2.5rem; border-radius: 1.5rem; }
             .card-link img { width: 120px; margin-bottom: 2rem; }
             .code-container { padding: 1rem 2rem; margin-bottom: 2rem; border-radius: 1rem; }
             .code-container svg { font-size: 1.8rem; margin: 0 0.8rem; }
@@ -633,7 +650,9 @@
             .footer-socials .social-img { width: 28px; height: 28px; }
 
             .coin-left, .coin-right { height: 120px; }
-            .draggable { width: 320px; height: 220px; bottom: 20px; right: 20px; }
+            .draggable {
+    width: clamp(280px, 30vw, 400px);
+    height: clamp(180px, 25vw, 280px); width: 320px; height: 220px; bottom: 20px; right: 20px; }
             .minimized-icon { width: 70px; height: 70px; font-size: 2.8em; bottom: 20px; right: 20px; }
         }
 
@@ -649,14 +668,18 @@
             .dropdown-menu a { padding: 10px 15px; font-size: 0.9em; }
             .dropdown-menu a .fab { font-size: 1em; margin-right: 8px; }
 
-            .hero-title { font-size: 2.5em; letter-spacing: 1px; }
-            .hero-subtitle { font-size: 1em; }
+            .hero-title {
+    font-size: clamp(2.5rem, 5vw, 5rem); font-size: 2.5em; letter-spacing: 1px; }
+            .hero-subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.6rem); font-size: 1em; }
             .leaderboard-section .title { font-size: 2em; letter-spacing: 0.5px; }
             .toggle-images .game-image { width: 250px; }
             .toggle-images .label { font-size: 1.1em; padding: 6px 18px; }
 
             .card-container { padding: 1.5rem 0.5rem; }
-            .card-link .card-content { padding: 1.8rem; border-radius: 1rem; }
+            .card-link .card-content {
+    width: 100%;
+    max-width: 500px; padding: 1.8rem; border-radius: 1rem; }
             .card-link img { width: 90px; margin-bottom: 1rem; }
             .code-container { padding: 0.7rem 1.2rem; margin-bottom: 1rem; border-radius: 0.6rem; }
             .code-container svg { font-size: 1.1rem; margin: 0 0.4rem; }
@@ -678,6 +701,8 @@
 
             .coin-container { display: none; } /* Hide coins on smaller screens for performance/layout */
             .draggable {
+    width: clamp(280px, 30vw, 400px);
+    height: clamp(180px, 25vw, 280px);
                 width: 90vw;
                 height: 160px;
                 bottom: 10px;
@@ -807,8 +832,7 @@
 
 
 /* Hard clamp for layout overflow issues */
-* {
-  max-width: 100vw !important;
+*, *::before, *::after {
   box-sizing: border-box;
 }
 html, body {
@@ -821,9 +845,33 @@ html, body {
         display: none !important;
     }
 }
+
+@media (max-width: 768px) {
+  body {
+    background-image: url('98525279-3ced-4838-883d-d0fb24eec4da.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  .draggable {
+    background: rgba(0, 0, 0, 0.6);
+    border: none !important;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5) !important;
+  }
+}
+
+/* Enhanced Stream Box for PC */
+.draggable {
+  background: rgba(10, 17, 30, 0.65) !important;
+  backdrop-filter: blur(20px) !important;
+  border: 2px solid rgba(99, 179, 237, 0.5) !important;
+  box-shadow: 0 0 80px rgba(99, 179, 237, 0.3) !important;
+}
+
 </style>
 </head>
-<body class="antialiased" style="max-width: 100vw; overflow-x: hidden;">
+<body class="antialiased bg-[#0A111E] text-gray-100">
 <canvas id="particleCanvas"></canvas>
 <div class="glow-container">
 <div class="left-glow"></div>
@@ -952,7 +1000,7 @@ html, body {
         const canvas = document.getElementById('particleCanvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-        const numParticles = 150; // Increased number of particles for a denser effect
+        const numParticles = window.innerWidth < 768 ? 40 : 150; // Increased number of particles for a denser effect
         const particleColor = 'rgba(99, 179, 237, 0.6)'; // Slightly more visible blue particles
         const lineColor = 'rgba(99, 179, 237, 0.15)'; // Slightly more visible lines
 
